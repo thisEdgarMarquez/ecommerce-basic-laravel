@@ -11,6 +11,11 @@
 |
 */
 Route::group(['middleware' => 'esAdmin'],function(){
+    //Categorias
+    Route::get('admin/categorias','CategoriasController@index')->name('verCategorias');
+    Route::get('admin/categorias/agregar','CategoriasController@agregar')->name('agregarCategorias');
+    route::post('admin/categorias/guardar','CategoriasController@guardar')->name('guardarCategorias');
+    //Generales
     Route::get('admin','AdminController@index')->name('admin');
 });
 Route::get('/', function () {
