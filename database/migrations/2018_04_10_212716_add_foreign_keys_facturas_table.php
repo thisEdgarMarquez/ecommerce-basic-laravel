@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriasTable extends Migration
+class AddForeignKeysFacturasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre')->unique();
-            $table->text('descripcion');
-            $table->boolean('estado');
+        Schema::table('facturas', function (Blueprint $table) {
+            $table->foreign('idusuario')->references('id')->on('usuarios');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::table('facturas', function (Blueprint $table) {
+            //
+        });
     }
 }
