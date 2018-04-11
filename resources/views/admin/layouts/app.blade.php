@@ -7,6 +7,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link href={{asset('css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('css/estilo.css')}} rel="stylesheet">
+    <link href={{asset('fontawesome/css/fontawesome-all.css')}} rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
