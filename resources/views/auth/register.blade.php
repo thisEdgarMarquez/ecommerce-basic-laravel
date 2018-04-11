@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">Registrar</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -38,28 +38,66 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                            <label for="cedula" class="col-md-4 col-form-label text-md-right">{{ __('Cedula de identidad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" maxlength="11" minlength="11"  required autofocus>
+                                <input id="name" type="numeric" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" maxlength="8" minlength="8"  required autofocus>
 
-                                @if ($errors->has('telefono'))
+                                @if ($errors->has('cedula'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('telefono') }}</strong>
+                                        <strong>{{ $errors->first('cedula') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="correo" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electrónico') }}</label>
+                            <label for="rif" class="col-md-4 col-form-label text-md-right">{{ __('Rif') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('correo') ? ' is-invalid' : '' }}" name="correo" value="{{ old('correo') }}" required>
+                                <input id="name" type="text" class="form-control{{ $errors->has('rif') ? ' is-invalid' : '' }}" name="rif" value="{{ old('rif') }}" maxlength="11" minlength="11">
 
-                                @if ($errors->has('correo'))
+                                @if ($errors->has('rif'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('correo') }}</strong>
+                                        <strong>{{ $errors->first('rif') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telefono1" class="col-md-4 col-form-label text-md-right">{{ __('Telefono 1') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="numeric" class="form-control{{ $errors->has('telefono1') ? ' is-invalid' : '' }}" name="telefono1" value="{{ old('telefono1') }}" maxlength="11" minlength="11"  required autofocus>
+
+                                @if ($errors->has('telefono1'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('telefono1') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telefono2" class="col-md-4 col-form-label text-md-right">{{ __('Telefono 2') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="numeric" class="form-control{{ $errors->has('telefono2') ? ' is-invalid' : '' }}" name="telefono2" value="{{ old('telefono2') }}" maxlength="11" minlength="11">
+
+                                @if ($errors->has('telefono2'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('telefono2') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electrónico') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -105,6 +143,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <button type="reset" class="btn btn-default">Limpiar</button>
                             </div>
                         </div>
                     </form>
