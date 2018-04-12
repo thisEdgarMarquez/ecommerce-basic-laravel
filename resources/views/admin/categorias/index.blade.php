@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="text-center">
-	<a href="{{route('agregarCategorias')}}">
+	<a href="{{route('agregarCategoria')}}">
 	<button class="btn btn-success">Agregar</button></a>
 </div>
 <div class="table-responsive">
@@ -13,8 +13,9 @@
 				<th>Estado</th>
 			</tr>
 		</thead>
+			<tbody>
 				@foreach($categorias as $categoria)
-				<tr>
+				<tr data-id="{{$categoria->id}}">
 					<td>{{ $categoria->nombre }}</td>
 					<td>{{ $categoria->descripcion }}</td>
 						@if($categoria->estado)
@@ -23,20 +24,14 @@
 							<td>Activa</td>
 						@endif
 					<td>
-						<a href="" class="btn btn-primary">
-							<i class="fa fa-pencil-square"></i>
-						</a>
-						<form>
-							<input type="hidden" name="_method" value="DELETE">
-								<button onClick="return confirm('Eliminar registro?')" class="btn btn-danger">
-									<i class="fa fa-trash-o"></i>
-								</button>
-						</form>
+						<a href="{{route('editarCategoria',['id' => $categoria->id])}}"><i class="fas fa-pencil-alt"></i></a>
+						<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el registro?','{{route('eliminarCategoria')}}',{{$categoria->id}});"><i class="fas fa-trash "></i></a>
 					</td>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
+		<div id="ajaxRespuesta"></div>
 	</div>
 
 @endsection
