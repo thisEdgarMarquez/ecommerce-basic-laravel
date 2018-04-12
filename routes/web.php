@@ -11,12 +11,15 @@
 |
 */
 Route::group(['middleware' => 'esAdmin'],function(){
-    //Categorias
-    Route::get('admin/categorias','CategoriasController@index')->name('verCategorias');
-    Route::get('admin/categorias/agregar','CategoriasController@agregar')->name('agregarCategorias');
-    route::post('admin/categorias/guardar','CategoriasController@guardar')->name('guardarCategorias');
-    //Generales
-    Route::get('admin','AdminController@index')->name('admin');
+     //Generales
+     Route::get('admin','AdminController@index')->name('admin');
+    //Categoria
+    Route::get('admin/categorias','CategoriaController@index')->name('verCategorias');
+    Route::get('admin/categorias/agregar','CategoriaController@agregar')->name('agregarCategoria');
+    Route::get('admin/categorias/editar/{id}','CategoriaController@editar')->name('editarCategoria')->where('id','[1-9]+');
+    Route::post('admin/categorias/guardar','CategoriaController@guardar')->name('guardarCategoria');
+    Route::post('admin/categorias/eliminar','CategoriaController@eliminar')->name('eliminarCategoria');
+    Route::post('admin/categorias/actualizar','CategoriaController@actualizar')->name('actualizarCategoria');
 });
 Route::get('/', function () {
     return view('home');
