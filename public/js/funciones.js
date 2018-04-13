@@ -6,7 +6,7 @@ function confirmacion(msj,url,iditem){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
             type: "POST",
-            url: 'as',
+            url: url,
             data: {id: iditem},
         }).done(function(response){
             $(`[data-id=${iditem}]`).remove();
