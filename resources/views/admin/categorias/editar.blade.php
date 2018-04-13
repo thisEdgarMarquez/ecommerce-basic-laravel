@@ -7,6 +7,7 @@
     <div>
             <form method="POST" action="{{route('actualizarCategoria')}}">
                 {{csrf_field()}}
+                    <input type="hidden" name="id" value={{$categoria->id}} />
                     <div class="form-group row">
                       <label for="nombre" class="col-4 col-form-label">Nombre</label> 
                       <div class="col-8">
@@ -20,15 +21,15 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="estado" class="col-4 col-form-label">Estado</label> 
+                      <label for="status" class="col-4 col-form-label">Estado</label> 
                       <div class="col-8">
-                        <select id="estado" name="estado" class="custom-select" required="required">
-                        @if($categoria->status == 0)
-                            <option value="0" selected>Activa</option>
-                            <option value="1">Desactivada</option>
+                        <select id="estado" name="status" class="custom-select" required="required">
+                        @if($categoria->status == 1)
+                            <option value="1" selected>Activa</option>
+                            <option value="0">Desactivada</option>
                         @else
-                            <option value="0" selected>Activa</option>
-                            <option value="1" selected>Desactivada</option>
+                            <option value="1" selected>Activa</option>
+                            <option value="0" selected>Desactivada</option>
                         @endif
                         </select>
                       </div>

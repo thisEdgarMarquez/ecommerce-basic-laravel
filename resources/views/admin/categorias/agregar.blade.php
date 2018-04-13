@@ -22,9 +22,9 @@
                     <div class="form-group row">
                       <label for="estado" class="col-4 col-form-label">Estado</label> 
                       <div class="col-8">
-                        <select id="estado" name="estado" class="custom-select" required="required">
-                          <option value="0">Activa</option>
-                          <option value="1">Desactivada</option>
+                        <select id="estado" name="status" class="custom-select" required="required">
+                          <option value="1">Activa</option>
+                          <option value="0">Desactivada</option>
                         </select>
                       </div>
                     </div> 
