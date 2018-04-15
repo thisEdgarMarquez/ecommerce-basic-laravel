@@ -21,8 +21,8 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/categorias/eliminar','CategoriaController@eliminar')->name('eliminarCategoria');
     Route::post('admin/categorias/actualizar','CategoriaController@actualizar')->name('actualizarCategoria');
 });
-Route::get('/', function () {
-    return view('home');
+Route::get('/', function (App\Categoria $categorias) {
+    return view('home',['categorias' => $categorias->all()]);
 })->name('inicio');
 
 Auth::routes();
