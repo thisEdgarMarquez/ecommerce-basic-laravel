@@ -27,6 +27,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/generos/crear','GeneroController@crear')->name('crearGenero');
     Route::post('admin/generos/eliminar','GeneroController@eliminar')->name('eliminarGenero');
     Route::post('admin/generos/actualizar','GeneroController@actualizar')->name('actualizarGenero');
+    //Marcas
+    Route::get('admin/marcas','MarcaController@index')->name('verMarcas');
+    Route::get('admin/marcas/agregar','MarcaController@agregar')->name('agregarMarca');
+    route::get('admin/marcas/editar/{id}','MarcaController@editar')->name('editarMarca')->where('id','[1-9]+');
+    Route::post('admin/marcas/crear','MarcaController@crear')->name('crearMarca');
+    Route::post('admin/marcas/actualizar','MarcaController@actualizar')->name('actualizarMarca');
+    Route::post('admin/marcas/eliminar','MarcaController@eliminar')->name('eliminarMarca');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);

@@ -39,7 +39,7 @@ class GeneroController extends Controller
         ]);
         $genero->fill($request->all());
         $actualizacion = $genero->save();
-        $msj = $actualizacion ? 'El género fue actualizado con exito.' : 'Lo sentimos, ocurrió un error en el proceso de actualización del género.';
+        $msj = $actualizacion ? 'El género fue modificado con exito.' : 'Lo sentimos, ocurrió un error en el proceso de modificación del género.';
         return redirect()->back()->with('msj',$msj);
     }
 }
