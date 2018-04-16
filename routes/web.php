@@ -20,6 +20,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/categorias/guardar','CategoriaController@guardar')->name('guardarCategoria');
     Route::post('admin/categorias/eliminar','CategoriaController@eliminar')->name('eliminarCategoria');
     Route::post('admin/categorias/actualizar','CategoriaController@actualizar')->name('actualizarCategoria');
+    //Géneros
+    Route::get('admin/generos','GeneroController@index')->name('verGeneros');
+    Route::get('admin/generos/agregar','GeneroController@agregar')->name('agregarGenero');
+    Route::get('admin/generos/editar/{id}','GeneroController@editar')->name('editarGenero')->where('id','[1-9]+');
+    Route::post('admin/generos/crear','GeneroController@crear')->name('crearGenero');
+    Route::post('admin/generos/eliminar','GeneroController@eliminar')->name('eliminarGenero');
+    Route::post('admin/generos/actualizar','GeneroController@actualizar')->name('actualizarGenero');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);
