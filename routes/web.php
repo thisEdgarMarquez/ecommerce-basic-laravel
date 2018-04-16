@@ -34,6 +34,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/marcas/crear','MarcaController@crear')->name('crearMarca');
     Route::post('admin/marcas/actualizar','MarcaController@actualizar')->name('actualizarMarca');
     Route::post('admin/marcas/eliminar','MarcaController@eliminar')->name('eliminarMarca');
+    //Tallas
+    Route::get('admin/tallas','TallaController@index')->name('verTallas');
+    Route::get('admin/tallas/agregar','TallaController@agregar')->name('agregarTalla');
+    Route::get('admin/tallas/editar/{id}','TallaController@editar')->name('editarTalla')->where('id','[1-9]+');
+    Route::post('admin/tallas/crear','TallaController@crear')->name('crearTalla');
+    Route::post('admin/tallas/actualizar','TallaController@actualizar')->name('actualizarTalla');
+    Route::post('admin/tallas/eliminar','TallaController@eliminar')->name('eliminarTalla');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);
