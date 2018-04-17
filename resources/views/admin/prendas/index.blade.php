@@ -29,9 +29,9 @@
 					<tr data-id="{{$prenda->id}}">
                         <td>{{$prenda->nombre}}</td>
                         <td>{{$prenda->precio}}</td>
-                        <td>{{$prenda->idmarca}}</td>
-                        <td>{{$prenda->idcategoria}}</td>
-                        <td>{{$prenda->idgenero}}</td>
+                        <td>{{$prenda->marca_pk['nombre']}}</td>
+                        <td>{{$prenda->categoria_pk['nombre']}}</td>
+                        <td>{{$prenda->genero_pk['nombre']}}</td>
                         <td>{{$prenda->descripcion}}</td>
                         <td>{{$prenda->cantidad}}</td>
 						@if($prenda->status)

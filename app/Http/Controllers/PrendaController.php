@@ -12,7 +12,8 @@ use App\Marca;
 class PrendaController extends Controller
 {
     public function index(){
-        return view('admin/prendas/index')->with('prendas',Prenda::paginate(10));
+        $prendas = Prenda::with('marca_pk','categoria_pk','genero_pk')->paginate(10);
+        return view('admin/prendas/index',compact('prendas'));
     }
     public function agregar(){
         $categorias = Categoria::where('status',1)->orderBy('nombre','asc')->get();
