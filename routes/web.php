@@ -48,6 +48,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/colores/crear','ColorController@crear')->name('crearColor');
     Route::post('admin/colores/actualizar','ColorController@actualizar')->name('actualizarColor');
     Route::post('admin/colores/eliminar','ColorController@eliminar')->name('eliminarColor');
+    //Prendas
+    Route::get('admin/prendas','PrendaController@index')->name('verPrendas');
+    Route::get('admin/prendas/agregar','PrendaController@agregar')->name('agregarPrenda');
+    Route::get('admin/prendas/editar/{id}','PrendaController@editar')->name('editarPrenda')->where('id','[1-9]+');
+    Route::post('admin/prendas/crear','PrendaController@crear')->name('crearPrenda');
+    Route::post('admin/prendas/actualizar','PrendaController@actualizar')->name('actualizarPrenda');
+    Route::post('admin/prendas/eliminar','PrendaController@eliminar')->name('eliminarPrenda');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);
