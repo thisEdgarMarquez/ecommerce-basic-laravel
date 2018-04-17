@@ -9,6 +9,7 @@
     <link href={{asset('css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('css/estilo.css')}} rel="stylesheet">
     <link href={{asset('fontawesome/css/fontawesome-all.css')}} rel="stylesheet">
+    <link href="{{asset('colorpicker/css/bootstrap-colorpicker.css')}}" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
@@ -26,4 +27,13 @@
 <script src="{{asset('js/popper.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/funciones.js')}}"></script>
-</html>
+<script src="{{asset('colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('#hexadecimalInput').colorpicker({
+        useHashPrefix: false,
+        format:'hexademcimal'
+    });
+
+});
+</script>
