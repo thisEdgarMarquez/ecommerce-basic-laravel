@@ -10,8 +10,10 @@ function confirmacion(msj,url,iditem){
             data: {id: iditem},
         }).done(function(response){
             $(`[data-id=${iditem}]`).remove();
+            $('#ajaxRespuesta').empty();
             $('#ajaxRespuesta').append(`<div class="alert alert-info text-center">${response.msj}</div>`);
         }).fail(function(err){
+            $('#ajaxRespuesta').empty();
             $('#ajaxRespuesta').append(`<div class="alert alert-danger text-center">Lo sentimos, ocurrio un error</div>`);
         });
 
