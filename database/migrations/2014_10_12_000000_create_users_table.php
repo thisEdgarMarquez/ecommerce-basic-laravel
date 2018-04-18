@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->char('telefono1',11);
             $table->char('telefono2',11)->nullable();
             $table->boolean('status')->default(1);
-            $table->char('cedula',8)->unique();
+            $table->char('cedula',8)->unique()->nullable();
             $table->char('rif',11)->unique()->nullable();
             $table->string('direccion');
             $table->rememberToken();

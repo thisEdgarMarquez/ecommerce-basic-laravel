@@ -17,7 +17,7 @@ class CreateProveedorsTable extends Migration
             $table->increments('id');
             $table->string('nombre',60)->unique();
             $table->char('cedula',8)->unique()->nullable();
-            $table->char('rif',11)->unique();
+            $table->char('rif',11)->unique()->nullable();
             $table->char('telefono1',11);
             $table->char('telefono2',11)->nullable();
             $table->string('email',60)->unique();
