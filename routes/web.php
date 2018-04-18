@@ -55,6 +55,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/prendas/crear','PrendaController@crear')->name('crearPrenda');
     Route::post('admin/prendas/actualizar','PrendaController@actualizar')->name('actualizarPrenda');
     Route::post('admin/prendas/eliminar','PrendaController@eliminar')->name('eliminarPrenda');
+    //Proveedores
+    Route::get('admin/proveedores','ProveedorController@index')->name('verProveedores');
+    Route::get('admin/proveedores/agregar','ProveedorController@agregar')->name('agregarProveedor');
+    Route::get('admin/proveedores/editar/{id}','ProveedorController@editar')->name('editarProveedor')->where('id','[1-9]+');
+    Route::post('admin/proveedores/crear','ProveedorController@crear')->name('crearProveedor');
+    Route::post('admin/proveedores/actualizar','ProveedorController@actualizar')->name('actualizarProveedor');
+    Route::post('admin/proveedores/eliminar','ProveedorController@eliminar')->name('eliminarProveedor');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);

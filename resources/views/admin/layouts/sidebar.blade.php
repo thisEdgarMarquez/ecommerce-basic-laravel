@@ -7,6 +7,7 @@
             <li><a href="{{route('verMarcas')}}">Marcas</a></li>
             <li><a href="{{route('verTallas')}}">Tallas</a></li>
             <li><a href="{{route('verColores')}}">Colores</a></li>
+            <li><a href="{{route('verProveedores')}}">Proveedores</a></li>
         </ul>
     </div>
 </div>
