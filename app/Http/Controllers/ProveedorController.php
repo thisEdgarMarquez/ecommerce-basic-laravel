@@ -18,8 +18,8 @@ class ProveedorController extends Controller
     public function crear(Request $request){
         $this->validate($request,[
             'nombre' => 'required|unique:proveedores|max:255',
-            'cedula' => 'required_if:rif,null|unique:proveedores',
-            'rif' => 'required_if:cedula,null|unique:proveedores',
+            'cedula' => 'required_without:rif|unique:proveedores|nullable',
+            'rif' => 'required_without:cedula|unique:proveedores|nullable',
             'telefono1' => 'required|unique:proveedores|numeric',
             'telefono2' => 'nullable|numeric|unique:proveedores',
             'email' => 'required|unique:proveedores|email',
