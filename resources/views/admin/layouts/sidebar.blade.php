@@ -8,6 +8,7 @@
             <li><a href="{{route('verTallas')}}">Tallas</a></li>
             <li><a href="{{route('verColores')}}">Colores</a></li>
             <li><a href="{{route('verProveedores')}}">Proveedores</a></li>
+            <li><a href="{{route('verUsuarios')}}">Usuarios</a></li>
         </ul>
     </div>
 </div>

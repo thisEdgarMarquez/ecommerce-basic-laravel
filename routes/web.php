@@ -62,6 +62,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/proveedores/crear','ProveedorController@crear')->name('crearProveedor');
     Route::post('admin/proveedores/actualizar','ProveedorController@actualizar')->name('actualizarProveedor');
     Route::post('admin/proveedores/eliminar','ProveedorController@eliminar')->name('eliminarProveedor');
+    //Usuarios
+    Route::get('admin/usuarios','UsuarioController@index')->name('verUsuarios');
+    Route::get('admin/usuarios/agregar','UsuarioController@agregar')->name('agregarUsuario');
+    Route::get('admin/usuarios/editar/{id}','UsuarioController@editar')->name('editarUsuario')->where('id','[1-9]+');
+    Route::post('admin/usuarios/crear','UsuarioController@crear')->name('crearUsuario');
+    Route::post('admin/usuarios/actualizar','UsuarioController@actualizar')->name('actualizarUsuario');
+    Route::post('admin/usuarios/eliminar','UsuarioController@eliminar')->name('eliminarUsuario');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);
