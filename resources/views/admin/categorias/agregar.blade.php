@@ -1,9 +1,11 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="col-md-12">
-    <div class="text-center">
-        <h3>Agregar categoria</h3>
-    </div>
+
+  <div class="jumbotron text-center">
+    <h1 class="text-uppercase">AGREGAR CATEGORÍA</h1>
+  </div>
+
     <div>
             <form method="POST" action="{{route('guardarCategoria')}}">
                 {{csrf_field()}}

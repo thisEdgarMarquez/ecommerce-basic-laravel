@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="col-md-12">
-    <div class="text-center">
-        <h3>Agregar marca</h3>
-    </div>
+  <div class="jumbotron text-center">
+    <h1 class="text-uppercase">AGREGAR MARCA</h1>
+  </div>
     <div>
             <form method="POST" action="{{route('crearMarca')}}">
                 {{csrf_field()}}

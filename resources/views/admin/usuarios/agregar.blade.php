@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="col-md-12">
-    <div class="text-center">
-        <h3>Agregar usuario</h3>
+  <div class="col-md-12">
+    <div class="jumbotron text-center">
+      <h1 class="text-uppercase">AGREGAR USUARIO</h1>
     </div>
-    <div>
+  <div>
     <form method="POST" action="{{route('crearUsuario')}}">
                 {{csrf_field()}}
                     <div class="form-group row">

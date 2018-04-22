@@ -1,12 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="row">
-	<div class="col-md-12">
-		<div class="text-center">
-			<a href="{{route('agregarPrenda')}}">
-			<button class="btn btn-success">Agregar</button></a>
-		</div>
-	</div>
+<div class="jumbotron text-center">
+	<h1 class="text-uppercase">PRENDAS</h1>
+	<a href="{{route('agregarPrenda')}}">
+		<button class="btn btn-success btn-lg"> <i class="fa fa-plus"></i> Agregar</button>
+	</a>
 </div>
 <div class="row">
 	<div class="col-md-12">
