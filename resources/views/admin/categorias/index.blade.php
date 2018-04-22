@@ -18,6 +18,7 @@
 						<th>Nombre</th>
 						<th>Descripción</th>
 						<th>Estado</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,9 +31,19 @@
 						@else
 							<td>Desactivada</td>
 						@endif
-						<td>
-							<a href="{{route('editarCategoria',['id' => $categoria->id])}}"><i class="fas fa-pencil-alt"></i></a>
-							<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el registro?','{{route('eliminarCategoria')}}',{{$categoria->id}});"><i class="fas fa-trash "></i></a>
+						<td>							
+							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
+								<button class="btn btn-info">
+									<a href="{{route('editarCategoria',['id' => $categoria->id])}}" class="btn btn-sm btn-info">
+										Editar <i class="fas fa-pencil-alt"></i>
+									</a>
+								</button>
+								<button class="btn btn-danger">
+									<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar la Categoría?','{{route('eliminarCategoria')}}',{{$categoria->id}});"  class="btn btn-sm btn-danger">
+										Eliminar <i class="fas fa-trash "></i>
+									</a>
+								</button>
+							</div>
 						</td>
 					</tr>
 					@endforeach

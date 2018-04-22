@@ -18,10 +18,11 @@
                         <th>Nivel</th>
 						<th>Teléfono 1</th>
 						<th>Teléfono 2</th>
-						<th>Cedula</th>
+						<th>Cédula</th>
 						<th>RIF</th>
 						<th>Dirección</th>
 						<th>Estado</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,8 +39,18 @@
 						<td>{{$usuario->direccion}}</td>
 						<td>@if($usuario->status) Activo @else Desactivado @endif</td>
 						<td>
-							<a href="{{route('editarUsuario',['id' => $usuario->id])}}"><i class="fas fa-pencil-alt"></i></a>
-							<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el usuario?','{{route('eliminarUsuario')}}',{{$usuario->id}});"><i class="fas fa-trash "></i></a>
+							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
+								<button class="btn btn-info">
+									<a href="{{route('editarUsuario',['id' => $usuario->id])}}" class="btn btn-sm btn-info">
+										Editar <i class="fas fa-pencil-alt"></i>
+									</a>
+								</button>
+								<button class="btn btn-danger">
+									<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el Usuario?','{{route('eliminarUsuario')}}',{{$usuario->id}});" class="btn btn-sm btn-danger">
+										Eliminar <i class="fas fa-trash "></i>
+									</a>
+								</button>
+							</div>
 						</td>
                     </tr>
 					@endforeach

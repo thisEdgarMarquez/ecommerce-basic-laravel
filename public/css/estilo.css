@@ -139,3 +139,11 @@ a:hover{
         display: block;
     }
 }
+
+.muestra-color{
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    border-radius: 6px;
+    border: #ccc solid 2px;
+}

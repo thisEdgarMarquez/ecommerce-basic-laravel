@@ -15,7 +15,7 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                        <label for="hex" class="col-4 col-form-label">Código Hexadecimal</label> 
+                        <label for="hex" class="col-4 col-form-label">Muestra</label> 
                         <div class="col-8">
                           <div class="input-group-append colorpicker-component">
                               <input id="hexadecimalInput" type="text" class="form-control input-lg" name="hex" value="{{$color->hex}}" />

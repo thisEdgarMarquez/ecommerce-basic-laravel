@@ -9,27 +9,38 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="table-responsive">
-			<table class="table table-striped table-bordered table-hover">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>HEX</th>
+						<th>Muestra</th>
 						<th>Estado</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($colores as $color)
 					<tr data-id="{{$color->id}}">
 						<td>{{ $color->nombre }}</td>
-						<td>{{ $color->hex }}</td>
+						<td> <span class="muestra-color" style="{{'background-color: #'.$color->hex }}"></span></td>
 						@if($color->status)
 							<td>Activa</td>
 						@else
 							<td>Desactivada</td>
 						@endif
-						<td>
-							<a href="{{route('editarColor',['id' => $color->id])}}"><i class="fas fa-pencil-alt"></i></a>
-							<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el color?','{{route('eliminarColor')}}',{{$color->id}});"><i class="fas fa-trash "></i></a>
+						<td>							
+							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
+								<button class="btn btn-info">
+									<a href="{{route('editarColor',['id' => $color->id])}}" class="btn btn-sm btn-info">
+										Editar <i class="fas fa-pencil-alt"></i>
+									</a>
+								</button>
+								<button class="btn btn-danger">
+									<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar el Color?','{{route('eliminarColor')}}',{{$color->id}});"  class="btn btn-sm btn-danger">
+										Eliminar <i class="fas fa-trash "></i>
+									</a>
+								</button>
+							</div>
 						</td>
 					</tr>
 					@endforeach
