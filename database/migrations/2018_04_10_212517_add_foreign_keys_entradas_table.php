@@ -14,7 +14,7 @@ class AddForeignKeysEntradasTable extends Migration
     public function up()
     {
         Schema::table('entradas', function (Blueprint $table) {
-            $table->foreign('idproveedor')->references('id')->on('proveedores');
+            $table->foreign('idproveedor')->references('id')->on('proveedores')->onUpdate('cascade');
         });
     }
 

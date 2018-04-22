@@ -17,10 +17,10 @@ class CreateColoresPrendasTable extends Migration
             $table->increments('id');
             $table->integer('idprenda')->unsigned();
             $table->integer('idcolor')->unsigned();
-            $table->integer('cantidad');
+            $table->integer('cantidad')->default('0');
             $table->timestamps();
-            $table->foreign('idprenda')->references('id')->on('prendas');
-            $table->foreign('idcolor')->references('id')->on('colores');
+            $table->foreign('idprenda')->references('id')->on('prendas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idcolor')->references('id')->on('colores')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

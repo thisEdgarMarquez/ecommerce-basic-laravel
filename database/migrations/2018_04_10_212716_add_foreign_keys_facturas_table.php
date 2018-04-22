@@ -14,7 +14,7 @@ class AddForeignKeysFacturasTable extends Migration
     public function up()
     {
         Schema::table('facturas', function (Blueprint $table) {
-            $table->foreign('idusuario')->references('id')->on('usuarios');
+            $table->foreign('idusuario')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

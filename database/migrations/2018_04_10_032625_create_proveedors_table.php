@@ -22,7 +22,7 @@ class CreateProveedorsTable extends Migration
             $table->char('telefono2',11)->nullable();
             $table->string('email',60)->unique();
             $table->string('direccion');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

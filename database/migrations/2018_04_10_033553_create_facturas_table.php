@@ -18,7 +18,7 @@ class CreateFacturasTable extends Migration
             $table->date('fecha');
             $table->float('monto');
             $table->integer('idusuario')->unsigned();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

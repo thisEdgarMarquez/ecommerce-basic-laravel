@@ -17,7 +17,7 @@ class CreateColorsTable extends Migration
             $table->increments('id');
             $table->string('nombre',60)->unique();
             $table->string('hex',6)->unique();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

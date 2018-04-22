@@ -17,7 +17,7 @@ class CreateEntradasTable extends Migration
             $table->increments('id');
             $table->integer('idproveedor')->unsigned();
             $table->date('fecha');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

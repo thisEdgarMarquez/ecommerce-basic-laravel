@@ -16,7 +16,7 @@ class CreateTallasTable extends Migration
         Schema::create('tallas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('medida')->unique();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

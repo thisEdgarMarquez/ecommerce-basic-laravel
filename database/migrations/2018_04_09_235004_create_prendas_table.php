@@ -17,9 +17,9 @@ class CreatePrendasTable extends Migration
             $table->increments('id');
             $table->string('nombre',60)->unique();
             $table->float('precio');
-            $table->integer('cantidad');
+            $table->integer('cantidad')->default('0');
             $table->integer('idmarca')->unsigned();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->integer('idcategoria')->unsigned();
             $table->integer('idgenero')->unsigned();
             $table->string('descripcion');

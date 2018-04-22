@@ -14,9 +14,9 @@ class AddForeignKeysPrendasTable extends Migration
     public function up()
     {
         Schema::table('prendas', function (Blueprint $table) {
-            $table->foreign('idmarca')->references('id')->on('marcas');
-            $table->foreign('idcategoria')->references('id')->on('categorias');
-            $table->foreign('idgenero')->references('id')->on('generos');
+            $table->foreign('idmarca')->references('id')->on('marcas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idcategoria')->references('id')->on('categorias')->onUpdate('cascade');
+            $table->foreign('idgenero')->references('id')->on('generos')->onUpdate('cascade');
         });
     }
 
