@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="cedula" class="col-md-4 col-form-label text-md-right">{{ __('Cedula de identidad') }}</label>
+                            <label for="cedula" class="col-md-4 col-form-label text-md-right">{{ __('Cédula de Identidad') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="numeric" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" maxlength="8" minlength="8"  required autofocus>
@@ -51,10 +51,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="rif" class="col-md-4 col-form-label text-md-right">{{ __('Rif') }}</label>
+                            <label for="rif" class="col-md-4 col-form-label text-md-right">{{ __('RIF') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('rif') ? ' is-invalid' : '' }}" name="rif" value="{{ old('rif') }}" maxlength="11" minlength="11">
+                                <input id="name" type="text" class="form-control{{ $errors->has('rif') ? ' is-invalid' : '' }}" name="rif" value="{{ old('rif') }}" maxlength="10" minlength="9">
 
                                 @if ($errors->has('rif'))
                                     <span class="invalid-feedback">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="telefono1" class="col-md-4 col-form-label text-md-right">{{ __('Telefono 1') }}</label>
+                            <label for="telefono1" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono 1') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="numeric" class="form-control{{ $errors->has('telefono1') ? ' is-invalid' : '' }}" name="telefono1" value="{{ old('telefono1') }}" maxlength="11" minlength="11"  required autofocus>
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="telefono2" class="col-md-4 col-form-label text-md-right">{{ __('Telefono 2') }}</label>
+                            <label for="telefono2" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono 2') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="numeric" class="form-control{{ $errors->has('telefono2') ? ' is-invalid' : '' }}" name="telefono2" value="{{ old('telefono2') }}" maxlength="11" minlength="11">
