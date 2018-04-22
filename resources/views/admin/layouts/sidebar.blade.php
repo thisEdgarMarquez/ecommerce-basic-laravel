@@ -11,6 +11,7 @@
                 <li><a href="{{route('verMarcas')}}"> <i class="fa fa-bookmark fa-lg"></i> Marcas</a></li>
                 <li><a href="{{route('verTallas')}}"> <i class="fa fa-expand-arrows-alt fa-lg"></i> Tallas</a></li>
                 <li><a href="{{route('verColores')}}"> <i class="fa fa-paint-brush fa-lg"></i> Colores</a></li>
+                <li><a href="{{route('verGeneros')}}"> <i class="fa fa-transgender fa-lg"></i> Géneros</a></li>
                 <li><a href="{{route('verProveedores')}}"> <i class="fa fa-truck fa-lg"></i> Proveedores</a></li>
                 <li><a href="{{route('verUsuarios')}}"> <i class="fa fa-user fa-lg"></i> Usuarios</a></li>
             </ul>            
