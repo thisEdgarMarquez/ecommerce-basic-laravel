@@ -10,6 +10,7 @@
     <link href={{asset('css/estilo.css')}} rel="stylesheet">
     <link href={{asset('fontawesome/css/fontawesome-all.css')}} rel="stylesheet">
     <link href="{{asset('colorpicker/css/bootstrap-colorpicker.css')}}" rel="stylesheet">
+    <link href="{{asset('css/datepicker.css')}}" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
@@ -28,8 +29,14 @@
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/funciones.js')}}"></script>
 <script src="{{asset('colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+<script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 <script>
 $(document).ready(function() {
+    $('#fechaEntrada').datepicker({
+        format:'yyyy-mm-dd',
+        todayBtn:true,
+        language:'es'
+    });
     $('#hexadecimalInput').colorpicker({
         useHashPrefix: false,
         format:'hexademcimal'
