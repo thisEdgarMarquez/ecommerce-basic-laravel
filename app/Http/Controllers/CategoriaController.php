@@ -21,12 +21,7 @@ class CategoriaController extends Controller
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
-        $categoria = Categoria::create([
-            'nombre' => $request->get('nombre'),
-            'descripcion' => $request->get('descripcion'),
-            'status' => $request->get('estado')
-        ]);
-        $msj = $categoria ? 'La categoria fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la categoria.';
+        $msj = Categoria::create($request->all()) ? 'La categoria fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la categoria.';
         return redirect()->route('agregarCategoria')->with('msj',$msj);
     }
     public function eliminar(Request $request){
