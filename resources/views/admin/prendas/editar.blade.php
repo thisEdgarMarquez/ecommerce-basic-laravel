@@ -81,6 +81,39 @@
                                 @endif
                             </select>
                       </div>
+                      <div class="form-group row">
+                        <table class="table table-striped table-bordered table-hover" id="tallasEntrada">
+                                <thead>
+                                    <tr>
+                                        <th>Tallas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <ul>
+                                                @foreach($tallas as $key => $talla)                                        
+                                                    <li><input name="idtallas[]" type="checkbox" id="talla-{{$talla['id']}}" value="{{$talla['id']}}">{{$talla['medida']}}</li>
+                                                @endforeach 
+
+                                                @foreach($tallas as $key => $talla)                                      
+                                                    @foreach($prendatallas as $key => $prenda)
+                                                        @if($prenda['idtalla'] == $talla['id'])
+                                                            {{-- <script>
+                                                                $("#talla-" + $talla['id']).prop("checked", "true");    
+                                                            </script> --}}
+                                                            <script>
+                                                                document.getElementById("talla-"+{{$talla['id']}}).checked = true;
+                                                            </script>
+                                                        @endif           
+                                                    @endforeach
+                                                @endforeach                                            
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div> 
                     <div class="form-group row">
                       <div class="offset-4 col-8">
