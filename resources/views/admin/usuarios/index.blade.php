@@ -39,17 +39,13 @@
 						<td>{{$usuario->direccion}}</td>
 						<td>@if($usuario->status) Activo @else Desactivado @endif</td>
 						<td>
-							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
-								<button class="btn btn-info">
-									<a href="{{route('editarUsuario',['id' => $usuario->id])}}" class="btn btn-sm btn-info">
-										Editar <i class="fas fa-pencil-alt"></i>
-									</a>
-								</button>
-								<button class="btn btn-danger">
-									<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el Usuario?','{{route('eliminarUsuario')}}',{{$usuario->id}});" class="btn btn-sm btn-danger">
-										Eliminar <i class="fas fa-trash "></i>
-									</a>
-								</button>
+							<div class="btn-group btn-group-xs" role="group" aria-label="...">
+								<a href="{{route('editarUsuario',['id' => $usuario->id])}}" class="btn btn-sm btn-info">
+									Editar <i class="fas fa-pencil-alt"></i>
+								</a>
+								<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el Usuario?','{{route('eliminarUsuario')}}',{{$usuario->id}});" class="btn btn-sm btn-danger">
+									Eliminar <i class="fas fa-trash "></i>
+								</a>
 							</div>
 						</td>
                     </tr>

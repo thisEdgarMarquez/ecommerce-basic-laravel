@@ -29,17 +29,13 @@
 							<td>Desactivada</td>
 						@endif
 						<td>
-							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
-								<button class="btn btn-info">
-									<a href="{{route('editarMarca',['id' => $marca->id])}}" class="btn btn-sm btn-info">
-										Editar <i class="fas fa-pencil-alt"></i>
-									</a>
-								</button>
-								<button class="btn btn-danger">
-									<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar la Marca?','{{route('eliminarMarca')}}',{{$marca->id}});"  class="btn btn-sm btn-danger">
-										Eliminar <i class="fas fa-trash "></i>
-									</a>
-								</button>
+							<div class="btn-group btn-group-xs" role="group" aria-label="...">
+								<a href="{{route('editarMarca',['id' => $marca->id])}}" class="btn btn-sm btn-info">
+									Editar <i class="fas fa-pencil-alt"></i>
+								</a>
+								<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar la Marca?','{{route('eliminarMarca')}}',{{$marca->id}});"  class="btn btn-sm btn-danger">
+									Eliminar <i class="fas fa-trash "></i>
+								</a>
 							</div>
 						</td>
 					</tr>
