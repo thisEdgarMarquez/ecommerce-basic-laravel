@@ -8,4 +8,8 @@ class Proveedor extends Model
 {
     protected $table = 'proveedores';
     protected $fillable = ['nombre','cedula','rif','telefono1','telefono2','email','direccion','status'];
+
+    public function entradas(){
+        return $this->hasMany('entradas','id');
+    }
 }

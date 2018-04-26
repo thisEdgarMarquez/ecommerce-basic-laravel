@@ -66,6 +66,26 @@
                       </div>
                     </div> 
                     <div class="form-group row">
+                        <table class="table table-striped table-bordered table-hover" id="tallasEntrada">
+                                <thead>
+                                    <tr>
+                                        <th>Talla</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-12">
+                                            <ul>
+                                                @foreach($tallas as $talla)
+                                                    <li><input type="checkbox" value="{{$talla->id}}" name="idtallas[]" />{{$talla->medida}} </li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    <div class="form-group row">
                       <div class="offset-4 col-8">
                         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                       </div>

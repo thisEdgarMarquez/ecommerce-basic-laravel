@@ -16,4 +16,7 @@ class Prenda extends Model
     public function genero_pk(){
         return $this->hasOne('App\Genero','id','idgenero');
     }
+    public function prendastallas_pk(){
+        return $this->hasMany('App\PrendaTalla','idprenda','id');
+    }
 }

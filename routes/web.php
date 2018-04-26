@@ -69,6 +69,12 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/usuarios/crear','UsuarioController@crear')->name('crearUsuario');
     Route::post('admin/usuarios/actualizar','UsuarioController@actualizar')->name('actualizarUsuario');
     Route::post('admin/usuarios/eliminar','UsuarioController@eliminar')->name('eliminarUsuario');
+    //Entradas
+    Route::get('admin/entradas','EntradaController@index')->name('verEntradas');
+    Route::get('admin/entradas/agregar','EntradaController@agregar')->name('agregarEntrada');
+    Route::get('admin/entradas/ver/{id}','EntradaController@getEntradaDetalle')->name('entradaDetalles')->where('id','[1-9]+');
+    Route::get('admin/entradas/gettallas','EntradaController@gettallas')->name('gettallas');
+    Route::post('admin/entradas/crear','EntradaController@crear')->name('crearEntrada');
 });
 Route::get('/', function (App\Categoria $categorias) {
     return view('home',['categorias' => $categorias->all()]);

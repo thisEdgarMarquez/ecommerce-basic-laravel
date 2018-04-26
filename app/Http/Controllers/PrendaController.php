@@ -8,6 +8,7 @@ use App\Prenda;
 use App\Categoria;
 use App\Genero;
 use App\Marca;
+use App\Talla;
 
 class PrendaController extends Controller
 {
@@ -19,7 +20,8 @@ class PrendaController extends Controller
         $categorias = Categoria::where('status',1)->orderBy('nombre','asc')->get();
         $generos = Genero::where('status',1)->get();
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
-        return view('admin/prendas/agregar',compact('categorias','generos','marcas'));
+        $tallas = Talla::where('status',1)->get();
+        return view('admin/prendas/agregar',compact('categorias','generos','marcas','tallas'));
     }
     public function crear(Request $request){
         $this->validate($request,[
@@ -28,10 +30,21 @@ class PrendaController extends Controller
             'idmarca' => 'required|integer|exists:marcas,id',
             'idcategoria' => 'required|integer|exists:categorias,id',
             'idgenero' => 'required|integer|exists:generos,id',
+            'idtallas' => 'required|array',
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
-        $msj = Prenda::create($request->all()) ? 'La prenda fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
+        $prenda = Prenda::create($request->all());
+        $resultado;
+        if($prenda){
+            for ($i=0; $i < count($request->get('idtallas')); $i++) { 
+                $resultado = $prenda->prendastallas_pk()->create(array(
+                    'idprenda' => $prenda->id,
+                    'idtalla' => $request->get('idtallas')[$i]
+                ));
+            }
+            $msj = $resultado ? 'La prenda fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
+        }else{$msj = 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';}
         return redirect()->back()->with('msj',$msj);
     }
     public function editar(Request $request){
@@ -39,7 +52,9 @@ class PrendaController extends Controller
         $categorias = Categoria::where('status',1)->orderBy('nombre','asc')->get();
         $generos = Genero::where('status',1)->get();
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
-        return view('admin/prendas/editar',compact('categorias','generos','marcas','prenda'));
+        $tallas = Talla::all()->toArray();
+        $prendatallas = $prenda->prendastallas_pk()->get()->toArray();
+        return view('admin/prendas/editar',compact('categorias','generos','marcas','prenda','tallas','prendatallas'));
     }
     public function actualizar(Request $request){
         $prenda = Prenda::findOrFail($request->get('id'));
@@ -49,12 +64,20 @@ class PrendaController extends Controller
             'idmarca' => 'required|integer|exists:marcas,id',
             'idcategoria' => 'required|integer|exists:categorias,id',
             'idgenero' => 'required|integer|exists:generos,id',
+            'idtallas' => 'required|array',
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
         $prenda->fill($request->all());
-        $actualizacion = $prenda->save();
-        $msj = $actualizacion ? 'La prenda fue modificada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de modificación de la prenda.';
+        $prenda->prendastallas_pk()->delete();
+        $resultado;
+        for ($i=0; $i < count($request->get('idtallas')) ; $i++) { 
+            $resultado = $prenda->prendastallas_pk()->create(array(
+                'idprenda' => $prenda->id,
+                'idtalla' => $request->get('idtallas')[$i]
+            ));
+        }
+        $msj = $resultado ? 'La prenda fue modificada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de modificación de la prenda.';
         return redirect()->back()->with('msj',$msj);
     }
     public function eliminar(Request $request){
