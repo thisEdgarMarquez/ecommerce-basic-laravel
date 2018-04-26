@@ -39,7 +39,6 @@
               <td>Desactivada</td>
                         @endif
                         <td>
-<<<<<<< HEAD
 							<div class="btn-group btn-group-xs" role="group" aria-label="...">
 								<a href="{{route('editarPrenda',['id' => $prenda->id])}}" class="btn btn-sm btn-info">
 									Editar <i class="fas fa-pencil-alt"></i>
@@ -56,28 +55,6 @@
 			<div id="ajaxRespuesta"></div>
 		</div>
 	</div>
-=======
-              <div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
-                <button class="btn btn-info">
-                  <a href="{{route('editarPrenda',['id' => $prenda->id])}}" class="btn btn-sm btn-info">
-                    Editar <i class="fas fa-pencil-alt"></i>
-                  </a>
-                </button>
-                <button class="btn btn-danger">
-                  <a href="#" onClick="return confirmacion('¿Estás seguro de eliminar la Prenda?','{{route('eliminarPrenda')}}',{{$prenda->id}});" class="btn btn-sm btn-danger">
-                    Eliminar <i class="fas fa-trash "></i>
-                  </a>
-                </button>
-              </div>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
-      <div id="ajaxRespuesta"></div>
-    </div>
-  </div>
->>>>>>> 5c17186685a2fda2cca356e77087d28c1938eeea
 </div>
 <div class="row">
   <div class="col-md-12">
