@@ -17,10 +17,12 @@ class CreateEntradasPrendasTable extends Migration
             $table->increments('id');
             $table->integer('identrada')->unsigned();
             $table->integer('idprenda')->unsigned();
+            $table->integer('idtalla')->unsigned();
             $table->integer('cantidad')->default('0');
             $table->timestamps();
             $table->foreign('identrada')->references('id')->on('entradas')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('idprenda')->references('id')->on('prendas')->onUpdate('cascade');
+            $table->foreign('idtalla')->references('id')->on('tallas')->onUpdate('cascade');
         });
     }
 
