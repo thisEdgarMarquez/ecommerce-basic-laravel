@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="col-md-12">
-    <div class="text-center">
-        <h3>Editar color</h3>
+    <div class="jumbotron text-center">
+        <h1 class="text-uppercase">EDITAR COLOR</h1>
     </div>
     <div>
             <form method="POST" action="{{route('actualizarColor')}}">
@@ -15,7 +15,7 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                        <label for="hex" class="col-4 col-form-label">Código Hexadecimal</label> 
+                        <label for="hex" class="col-4 col-form-label">Muestra</label> 
                         <div class="col-8">
                           <div class="input-group-append colorpicker-component">
                               <input id="hexadecimalInput" type="text" class="form-control input-lg" name="hex" value="{{$color->hex}}" />

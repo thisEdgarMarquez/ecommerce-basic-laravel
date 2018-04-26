@@ -1,9 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="col-md-12">
-    <div class="text-center">
-        <h3>Agregar prenda</h3>
+    <div class="jumbotron text-center">
+        <h1 class="text-uppercase">AGREGAR PRENDA</h1>
     </div>
+
     <div>
             <form method="POST" action="{{route('crearPrenda')}}">
                 {{csrf_field()}}

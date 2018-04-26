@@ -1,12 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="row">
-	<div class="col-md-12">
-		<div class="text-center">
-			<a href="{{route('agregarGenero')}}">
-			<button class="btn btn-success">Agregar</button></a>
-		</div>
-	</div>
+<div class="jumbotron text-center">
+	<h1 class="text-uppercase">GÉNEROS</h1>
+	<a href="{{route('agregarGenero')}}">
+		<button class="btn btn-success btn-lg"> <i class="fa fa-plus"></i> Agregar</button>
+	</a>
 </div>
 <div class="row">
 	<div class="col-md-12">
@@ -16,6 +14,7 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Estado</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,8 +27,18 @@
 							<td>Desactivado</td>
 						@endif
 						<td>
-							<a href="{{route('editarGenero',['id' => $genero->id])}}"><i class="fas fa-pencil-alt"></i></a>
-							<a href="#" onClick="return confirmacion('¿Estas seguro de eliminar el género?','{{route('eliminarGenero')}}',{{$genero->id}});"><i class="fas fa-trash "></i></a>
+							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
+								<button class="btn btn-info">
+									<a href="{{route('editarGenero',['id' => $genero->id])}}" class="btn btn-sm btn-info">
+										Editar <i class="fas fa-pencil-alt"></i>
+									</a>
+								</button>
+								<button class="btn btn-danger">
+									<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar el Género?','{{route('eliminarGenero')}}',{{$genero->id}});"  class="btn btn-sm btn-danger">
+										Eliminar <i class="fas fa-trash "></i>
+									</a>
+								</button>
+							</div>
 						</td>
 					</tr>
 					@endforeach

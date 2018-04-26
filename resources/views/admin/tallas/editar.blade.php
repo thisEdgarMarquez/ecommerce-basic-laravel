@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="col-md-12">
-    <div class="text-center">
-        <h3>Editar talla</h3>
+    <div class="jumbotron text-center">
+        <h1 class="text-uppercase">EDITAR TALLA</h1>
     </div>
     <div>
             <form method="POST" action="{{route('actualizarTalla')}}">

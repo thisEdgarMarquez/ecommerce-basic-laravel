@@ -1,12 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="row">
-	<div class="col-md-12">
-		<div class="text-center">
-			<a href="{{route('agregarPrenda')}}">
-			<button class="btn btn-success">Agregar</button></a>
-		</div>
-	</div>
+<div class="jumbotron text-center">
+	<h1 class="text-uppercase">PRENDAS</h1>
+	<a href="{{route('agregarPrenda')}}">
+		<button class="btn btn-success btn-lg"> <i class="fa fa-plus"></i> Agregar</button>
+	</a>
 </div>
 <div class="row">
 	<div class="col-md-12">
@@ -17,16 +15,11 @@
 						<th>Nombre</th>
                         <th>Precio</th>
                         <th>Marca</th>
-                        <th>Categoria</th>
-                        <th>Genero</th>
+                        <th>Categoría</th>
+                        <th>Género</th>
                         <th>Descripción</th>
-                        <th>Cantidad Total</th>
-                        <th>Estado</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($prendas as $prenda)
-					<tr data-id="{{$prenda->id}}">
+						<th>Estado</th>
+						<th>Acción</th>
                         <td>{{$prenda->nombre}}</td>
                         <td>{{$prenda->precio}}</td>
                         <td>{{$prenda->marca_pk['nombre']}}</td>
@@ -40,9 +33,19 @@
 							<td>Desactivada</td>
                         @endif
                         <td>
-                            <a href="{{route('editarPrenda',['id' => $prenda->id])}}"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" onClick="return confirmacion('¿Estas seguro de eliminar la prenda?','{{route('eliminarPrenda')}}',{{$prenda->id}});"><i class="fas fa-trash "></i></a>
-                        </td>
+							<div class="btn-group btn-group-xs btn-group-sm" role="group" aria-label="...">
+								<button class="btn btn-info">
+									<a href="{{route('editarPrenda',['id' => $prenda->id])}}" class="btn btn-sm btn-info">
+										Editar <i class="fas fa-pencil-alt"></i>
+									</a>
+								</button>
+								<button class="btn btn-danger">
+									<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar la Prenda?','{{route('eliminarPrenda')}}',{{$prenda->id}});" class="btn btn-sm btn-danger">
+										Eliminar <i class="fas fa-trash "></i>
+									</a>
+								</button>
+							</div>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>

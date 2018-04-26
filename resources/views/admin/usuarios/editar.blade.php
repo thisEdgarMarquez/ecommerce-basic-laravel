@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="col-md-12">
-    <div class="text-center">
-        <h3>Editar usuario</h3>
+    <div class="jumbotron text-center">
+      <h1 class="text-uppercase">EDITAR USUARIO</h1>
     </div>
-    <div>
+  <div>
     <form method="POST" action="{{route('actualizarUsuario')}}">
                 {{csrf_field()}}
                     <input type="hidden" name="id" value="{{$usuario->id}}">
