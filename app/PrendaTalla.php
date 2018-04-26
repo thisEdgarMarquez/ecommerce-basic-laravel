@@ -10,6 +10,9 @@ class PrendaTalla extends Model
     protected $fillable = ['idprenda','idtalla','cantidad'];
 
     public function prenda_pk(){
-        return $this->belongsTo('App\Prenda','id','idprenda');
+        return $this->hasOne('App\Prenda','id','idprenda');
+    }
+    public function talla_pk(){
+        return $this->hasOne('App\Talla','idtalla','id');
     }
 }
