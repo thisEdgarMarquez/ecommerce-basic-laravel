@@ -24,7 +24,7 @@ class GeneroController extends Controller
         return redirect()->back()->with('msj',$msj);
     }
     public function eliminar(Request $request){
-        Genero::findorFail($request->get('id'));    
+        Genero::findOrFail($request->get('id'));    
         $msj = Genero::destroy($request->get('id')) ? 'El género fue eliminado con exito.' : 'Lo sentimos, ocurrió un error en el proceso de eliminación del género.';
         return response()->json(['error' => false, 'msj' => $msj]);
     }
