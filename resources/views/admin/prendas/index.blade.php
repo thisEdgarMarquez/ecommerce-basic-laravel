@@ -20,7 +20,7 @@
                         <th>Categoria</th>
                         <th>Genero</th>
                         <th>Descripción</th>
-                        <th>Cantidad</th>
+                        <th>Cantidad Total</th>
                         <th>Estado</th>
 					</tr>
 				</thead>

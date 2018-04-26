@@ -4,6 +4,7 @@
             <li><a href="{{route('verCategorias')}}">Categorias</a></li>
             <li><a href="{{route('verPrendas')}}">Prendas</a></li>
             <li><a href="{{route('verGeneros')}}">Géneros</a></li>
+            <li><a href="{{route('verEntradas')}}">Entradas</a></li>
             <li><a href="{{route('verMarcas')}}">Marcas</a></li>
             <li><a href="{{route('verTallas')}}">Tallas</a></li>
             <li><a href="{{route('verColores')}}">Colores</a></li>
