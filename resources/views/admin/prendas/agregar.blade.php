@@ -6,7 +6,7 @@
     </div>
 
     <div>
-            <form method="POST" action="{{route('crearPrenda')}}">
+            <form method="POST" action="{{route('crearPrenda')}}" id="crea-prenda">
                 {{csrf_field()}}
                     <div class="form-group row">
                       <label for="nombre" class="col-4 col-form-label">Nombre</label> 
@@ -70,24 +70,31 @@
                                 <thead>
                                     <tr>
                                         <th>Talla</th>
+                                        <th>Colores</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="col-md-12">
-                                            <ul>
-                                                @foreach($tallas as $talla)
-                                                    <li><input type="checkbox" value="{{$talla->id}}" name="idtallas[]" />{{$talla->medida}} </li>
-                                                @endforeach
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                    @foreach($tallas as $talla)
+                                        <tr class="row-talla-color" id="{{$talla->id}}">
+                                            <td class="col-talla">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="checkbox" value="{{$talla->id}}" name="idtallas[]" />
+                                                    <label class="form-check-label">{{$talla->medida}}</label>
+                                                </div>
+                                            </td>
+                                            <td class="col-color">
+                                            @foreach($colores as $color)
+                                                <span class="check-color" style="background-color:#{{$color->hex}};"><input type="checkbox" name="idcolores[]" value="{{$color->id}}" title="{{$color->nombre}}"/></span>
+                                            @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     <div class="form-group row">
                       <div class="offset-4 col-8">
-                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                        <button name="submit" type="submit" id="submit-agregar-prenda" class="btn btn-primary">Submit</button>
                       </div>
                     </div>
                   </form>

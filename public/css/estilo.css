@@ -147,3 +147,9 @@ a:hover{
     border-radius: 6px;
     border: #ccc solid 2px;
 }
+.check-color{
+    margin:5px 8px;
+    padding: 5px 3px 0px 3px;
+    border-radius: 4px;
+    border:solid 1px #ccc;
+}   

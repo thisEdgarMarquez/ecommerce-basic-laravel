@@ -76,8 +76,10 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::get('admin/entradas/gettallas','EntradaController@gettallas')->name('gettallas');
     Route::post('admin/entradas/crear','EntradaController@crear')->name('crearEntrada');
 });
-Route::get('/', function (App\Categoria $categorias) {
-    return view('home',['categorias' => $categorias->all()]);
-})->name('inicio');
+
+//Home 
+Route::get('/','InicioController@index')->name('inicio');
+//Detalles Prenda
+Route::get('detalles-prenda/{id}','PrendaController@detalles')->name('detallesPrenda')->where('id','[1-9]+');
 
 Auth::routes();

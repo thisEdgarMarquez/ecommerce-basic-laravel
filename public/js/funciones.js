@@ -70,3 +70,120 @@ function actualizarTallaPrenda (prendaElement,tallaSelect, url){
        });
    });
 }
+
+//Manejo de la Galería de Detalles de Producto
+$(document).ready(function(){
+    'use strict';
+    var gallery = $('#js-gallery');
+    //=== Gallery Object ===//
+    var Gallery = {
+        zoom: function(imgContainer, img) {
+          var containerHeight = imgContainer.outerHeight(),
+          src = img.attr('src');
+          
+          if ( src.indexOf('/products/normal/') != -1 ) {
+            // Set height of container
+            imgContainer.css( "height", containerHeight );
+            
+            // Switch hero image src with large version
+            img.attr('src', src.replace('/products/normal/', '/products/zoom/') );
+            
+            // Add zoomed class to gallery container
+            gallery.addClass('is-zoomed');
+            
+            // Enable image to be draggable
+            img.draggable({
+              drag: function( event, ui ) {
+                ui.position.left = Math.min( 100, ui.position.left );
+                ui.position.top = Math.min( 100, ui.position.top );
+              }
+            });
+          } else {
+            // Ensure height of container fits image
+            imgContainer.css( "height", "auto" );
+            
+            // Switch hero image src with normal version
+            img.attr('src', src.replace('/products/zoom/', '/products/normal/') );
+            
+            // Remove zoomed class to gallery container
+            gallery.removeClass('is-zoomed');
+          }
+        },
+        switch: function(trigger, imgContainer) {
+          var src = trigger.attr('href'),
+          thumbs = trigger.siblings(),
+          img = trigger.parent().prev().children();
+          
+          // Add active class to thumb
+          trigger.addClass('is-active');
+          
+          // Remove active class from thumbs
+          thumbs.each(function() {
+            if( $(this).hasClass('is-active') ) {
+              $(this).removeClass('is-active');
+            }
+          });
+      
+          // Reset container if in zoom state
+          if ( gallery.hasClass('is-zoomed') ) {
+            gallery.removeClass('is-zoomed');
+            imgContainer.css( "height", "auto" );
+          }
+      
+          // Switch image source
+          img.attr('src', src);
+        }
+      };
+
+    // Listen for clicks on anchors within gallery
+    gallery.delegate('a', 'click', function(event) {
+        var trigger = $(this);
+        var triggerData = trigger.data("gallery");
+    
+        if ( triggerData === 'zoom') {
+          var imgContainer = trigger.parent(),
+          img = trigger.siblings();
+          Gallery.zoom(imgContainer, img);
+        } else if ( triggerData === 'thumb') {
+          var imgContainer = trigger.parent().siblings();
+          Gallery.switch(trigger, imgContainer);
+        } else {
+          return;
+        }
+    
+        event.preventDefault();
+      });
+});
+
+
+//Validación de Tallas y Colores al Agregar prenda
+
+$('#crea-prenda').on('submit', function(e){
+    
+    var isValid = true;
+
+    $('.row-talla-color').each(function(i){
+        
+        if($(this).find('.col-talla .checkbox').prop('checked')){
+
+            var checkColors = $(this).find('.col-color .check-color');
+            var cantCheckColors = checkColors.length;
+            var cantCheckColorsFalse = 0;
+
+            checkColors.each(function(i){
+
+                if($(this).find('input[type="checkbox"]').prop('checked') == false){
+                    ++cantCheckColorsFalse;
+                }
+            });
+
+            if(cantCheckColorsFalse == cantCheckColors) isValid = false;
+
+        }
+    });
+    
+    if(!isValid) {
+        alert('Error: Las Tallas seleccionadas deben poseer al menos un Color');
+        return false;
+    }
+})

@@ -9,7 +9,7 @@ use App\Categoria;
 use App\Genero;
 use App\Marca;
 use App\Talla;
-
+use App\Color;
 class PrendaController extends Controller
 {
     public function index(){
@@ -21,7 +21,8 @@ class PrendaController extends Controller
         $generos = Genero::where('status',1)->get();
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
         $tallas = Talla::where('status',1)->get();
-        return view('admin/prendas/agregar',compact('categorias','generos','marcas','tallas'));
+        $colores = Color::where('status',1)->get();
+        return view('admin/prendas/agregar',compact('categorias','generos','marcas','tallas','colores'));
     }
     public function crear(Request $request){
         $this->validate($request,[
@@ -30,11 +31,13 @@ class PrendaController extends Controller
             'idmarca' => 'required|integer|exists:marcas,id',
             'idcategoria' => 'required|integer|exists:categorias,id',
             'idgenero' => 'required|integer|exists:generos,id',
+            'idcolores' => 'required|array',
             'idtallas' => 'required|array',
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
-        $prenda = Prenda::create($request->all());
+        var_dump($request->get('idcolores'));
+        /*$prenda = Prenda::create($request->all());
         $resultado;
         if($prenda){
             for ($i=0; $i < count($request->get('idtallas')); $i++) { 
@@ -45,7 +48,7 @@ class PrendaController extends Controller
             }
             $msj = $resultado ? 'La prenda fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
         }else{$msj = 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';}
-        return redirect()->back()->with('msj',$msj);
+        return redirect()->back()->with('msj',$msj);*/
     }
     public function editar(Request $request){
         $prenda = Prenda::findOrFail($request->segment(4));
@@ -84,5 +87,10 @@ class PrendaController extends Controller
         Prenda::findOrFail($request->get('id'));
         $msj = Prenda::destroy($request->get('id')) ? 'La prenda fue eliminada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de eliminación de la prenda.';
         return response()->json(['error' => false,'msj' => $msj]);
+    }
+    public function detalles(Request $request){
+        $prenda = Prenda::findOrFail($request->segment(2))->with('categoria_pk','prendastallas_pk')->get();
+        $tallas = Talla::all();
+        return view('prenda',compact('prenda','tallas'));
     }
 }
