@@ -84,7 +84,7 @@
                                             </td>
                                             <td class="col-color">
                                             @foreach($colores as $color)
-                                                <span class="check-color" style="background-color:#{{$color->hex}};"><input type="checkbox" name="idcolores[]" value="{{$color->id}}" title="{{$color->nombre}}"/></span>
+                                                <span class="check-color" style="background-color:#{{$color->hex}};"><input type="checkbox" name="idcolores[{{$talla->id}}][]" value="{{$color->id}}" title="{{$color->nombre}}"/></span>
                                             @endforeach
                                             </td>
                                         </tr>

@@ -22,4 +22,7 @@ class Prenda extends Model
     public function prendastallas_pk(){
         return $this->hasMany('App\PrendaTalla','idprenda','id');
     }
+    public function prendascolores_pk(){
+        return $this->hasMany('App\ColorPrenda','idprenda','id');
+    }
 }

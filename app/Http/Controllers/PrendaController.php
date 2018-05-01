@@ -10,6 +10,7 @@ use App\Genero;
 use App\Marca;
 use App\Talla;
 use App\Color;
+use App\ColorPrenda;
 class PrendaController extends Controller
 {
     public function index(){
@@ -36,8 +37,8 @@ class PrendaController extends Controller
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
-        var_dump($request->get('idcolores'));
-        /*$prenda = Prenda::create($request->all());
+        $colores = $request->get('idcolores');
+        $prenda = Prenda::create($request->all());
         $resultado;
         if($prenda){
             for ($i=0; $i < count($request->get('idtallas')); $i++) { 
@@ -46,9 +47,23 @@ class PrendaController extends Controller
                     'idtalla' => $request->get('idtallas')[$i]
                 ));
             }
+            if($resultado)
+            {
+                foreach ($colores as $idtalla => $color) 
+                {
+                    foreach ($color as $value) 
+                    {
+                        $resultado = ColorPrenda::create(array(
+                            'idprenda' => $prenda->id,
+                            'idtalla' => $idtalla,
+                            'idcolor' => $value
+                        ));
+                    }
+                }
+            }
             $msj = $resultado ? 'La prenda fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
         }else{$msj = 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';}
-        return redirect()->back()->with('msj',$msj);*/
+        return redirect()->back()->with('msj',$msj);
     }
     public function editar(Request $request){
         $prenda = Prenda::findOrFail($request->segment(4));
@@ -57,7 +72,8 @@ class PrendaController extends Controller
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
         $tallas = Talla::all()->toArray();
         $prendatallas = $prenda->prendastallas_pk()->get()->toArray();
-        return view('admin/prendas/editar',compact('categorias','generos','marcas','prenda','tallas','prendatallas'));
+        $prendacolores = $prenda->prendascolores_pk()->get();
+        return view('admin/prendas/editar',compact('categorias','generos','marcas','prenda','tallas','prendatallas','prendacolores'));
     }
     public function actualizar(Request $request){
         $prenda = Prenda::findOrFail($request->get('id'));
