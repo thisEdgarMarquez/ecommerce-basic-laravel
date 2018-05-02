@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Usuario;
 use Illuminate\Validation\Rule;
 class UsuarioController extends Controller
@@ -79,5 +80,34 @@ class UsuarioController extends Controller
         Usuario::findOrFail($request->get('id'));
         $msj = Usuario::destroy($request->get('id')) ? 'El usuario fue eliminado con exito.' : 'Lo sentimos, ocurrió un error en el proceso de eliminación del usuario.';
         return response()->json(['error' => false, 'msj' => $msj]);
+    }
+    public function miperfil(){
+        return view('perfil')->with('usuario',Usuario::findOrFail(Auth::id()));
+    }
+    public function editarPerfil(Request $request){
+        $usuario = Usuario::findOrFail(Auth::id());
+        $this->validate($request,[
+            'nombre' => ['required',Rule::unique('usuarios')->ignore(Auth::id()),'max:255'],
+            'apellido' => ['required',Rule::unique('usuarios')->ignore(Auth::id()),'max:255'],
+            'cedula' => ['required_without:rif',Rule::unique('usuarios')->ignore(Auth::id()),'nullable'],
+            'rif' => ['required_without:cedula',Rule::unique('usuarios')->ignore(Auth::id()),'nullable'],
+            'telefono1' => ['required',Rule::unique('usuarios')->ignore(Auth::id()),'numeric'],
+            'telefono2' => ['nullable','numeric',Rule::unique('usuarios')->ignore(Auth::id())],
+            'email' => ['required',Rule::unique('usuarios')->ignore(Auth::id()),'email'],
+            'direccion' => 'required|string',
+            'password' => ($request->get('password') != "") ? 'required|string|min:6|confirmed' : "",
+        ]);
+        $usuario->nombre = $request->get('nombre');
+        $usuario->apellido = $request->get('apellido');
+        $usuario->email = $request->get('email');
+        $usuario->telefono1 = $request->get('telefono1');
+        $usuario->telefono2 =  $request->get('telefono2');
+        $usuario->cedula = $request->get('cedula');
+        $usuario->rif = $request->get('rif');
+        $usuario->direccion = $request->get('direccion');
+        if($request->get('password') != "") $usuario->password = Hash::make($request->get('password'));
+        $actualizacion = $usuario->save();
+        $msj = $actualizacion ? 'Tu perfil fue modificado con exito.' : 'Lo sentimos, ocurrió un error en el proceso de modificación de tu perfil.';
+        return redirect()->back()->with('msj',$msj);
     }
 }

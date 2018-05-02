@@ -78,6 +78,10 @@ Route::group(['middleware' => 'esAdmin'],function(){
 });
 
 //Home 
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('perfil','UsuarioController@miperfil')->name('miperfil');
+    Route::post('perfil/editar','UsuarioController@editarPerfil')->name('editarPerfil');
+});
 Route::get('/','InicioController@index')->name('inicio');
 //Detalles Prenda
 Route::get('detalles-prenda/{id}','PrendaController@detalles')->name('detallesPrenda')->where('id','[1-9]+');

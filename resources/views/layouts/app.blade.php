@@ -43,6 +43,7 @@
                 <a class="nav-link" href="{{route('login')}}">Ingresar</a>
             </li>
             @else
+            <li class="nav-item"><a class="nav-link" ref="{{route('miperfil')}}" href="{{route('miperfil')}}">Perfil</a></li>
             <li class="nav-item">
                 <a class="nav-link" ref="{{ route('logout') }}"
                 onclick="event.preventDefault();
