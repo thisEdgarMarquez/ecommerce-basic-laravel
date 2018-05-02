@@ -38,23 +38,30 @@
                                         <tr>
                                             <th>Prenda</th>
                                             <th>Talla</th>
+                                            <th>Color</th>
                                             <th>Cantidad</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="col-md-5">
+                                            <td>
                                                 <select name="idprenda" class="custom-select input-lg" id="idprenda" onchange="actualizarTallaPrenda(this,document.getElementById('idtalla'),'{{route('gettallas')}}')">
                                                     @foreach($prendas as $prenda)
                                                         <option value="{{$prenda['id']}}">{{$prenda['nombre']}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td class="col-md-3">
-                                                
+                                            <td>                                                
                                                 <select name="idtalla" class="custom-select input-lg" id="idtalla">
-                                                    @foreach($rel_tallas as $talla)
+                                                    @foreach($tallas as $talla)
                                                         <option value="{{$talla['id']}}">{{$talla['medida']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td>                                                
+                                                <select name="idcolor" class="custom-select input-lg" id="idcolor">
+                                                    @foreach($colores as $color)
+                                                        <option value="{{$color['id']}}">{{$color['nombre']}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>

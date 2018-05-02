@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prenda extends Model
 {
-    protected $fillable = ['nombre','precio','idmarca','status','idcategoria','idgenero','descripcion'];
+    protected $fillable = ['nombre','precio','idmarca','status','idcategoria','idgenero','img1','img2','img3','descripcion'];
     public function marca_pk(){
         return $this->hasOne('App\Marca','id','idmarca');
     }
@@ -15,14 +15,5 @@ class Prenda extends Model
     }
     public function genero_pk(){
         return $this->hasOne('App\Genero','id','idgenero');
-    }
-    public function colores_pk(){
-        return $this->hasMany('App\Colores','idprenda','id');
-    }
-    public function prendastallas_pk(){
-        return $this->hasMany('App\PrendaTalla','idprenda','id');
-    }
-    public function prendascolores_pk(){
-        return $this->hasMany('App\ColorPrenda','idprenda','id');
     }
 }

@@ -27,6 +27,7 @@ function agregarPrenda(){
             <tr id="fila-${ifilaagPrenda}">
                 <td>${$('#idprenda > option:selected').text()}<input type="hidden" name="idprenda[]" value="${$('#idprenda').val()}"></td>
                 <td>${$('#idtalla > option:selected').text()}<input type="hidden" name="idtalla[]" value="${$('#idtalla').val()}"></td>
+                <td>${$('#idcolor > option:selected').text()}<input type="hidden" name="idcolor[]" value="${$('#idcolor').val()}"></td>
                 <td><div class="row"><div class="col-md-10">${$('#cantidad').val()}<input type="hidden" name="cantidad[]" value="${$('#cantidad').val()}"></div><div class="col-md-2"><i class="fas fa-trash" onClick="eliminarEntrada(${ifilaagPrenda})"></i></div></div></td>
             </tr>
         `);

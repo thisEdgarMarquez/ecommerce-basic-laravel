@@ -13,4 +13,7 @@ class Entrada extends Model
     public function entradastallas_pk(){
         return $this->hasMany('App\EntradaTalla','identrada','id');
     }
+    public function entradaprenda_pk(){
+        return $this->hasMany('App\EntradaPrenda','identrada','id');
+    }
 }

@@ -13,12 +13,12 @@
         <thead>
           <tr>
             <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Marca</th>
-                        <th>Categoría</th>
-                        <th>Género</th>
-                        <th>Descripción</th>
-                        <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Categoría</th>
+            <th>Género</th>
+            <th>Descripción</th>
+            <th>Cantidad Total</th>
             <th>Estado</th>
             <th>Acción</th>
           </tr>
@@ -26,13 +26,13 @@
         <tbody>
           @foreach($prendas as $prenda)
           <tr data-id="{{$prenda->id}}">
-                        <td>{{$prenda->nombre}}</td>
-                        <td>{{$prenda->precio}}</td>
-                        <td>{{$prenda->marca_pk['nombre']}}</td>
-                        <td>{{$prenda->categoria_pk['nombre']}}</td>
-                        <td>{{$prenda->genero_pk['nombre']}}</td>
-                        <td>{{$prenda->descripcion}}</td>
-                        <td>{{$prenda->cantidad}}</td>
+            <td>{{$prenda->nombre}}</td>
+            <td>{{$prenda->precio}}</td>
+            <td>{{$prenda->marca_pk['nombre']}}</td>
+            <td>{{$prenda->categoria_pk['nombre']}}</td>
+            <td>{{$prenda->genero_pk['nombre']}}</td>
+            <td>{{$prenda->descripcion}}</td>
+            <td>{{$prenda->cantidad}}</td>
             @if($prenda->status)
               <td>Activa</td>
             @else

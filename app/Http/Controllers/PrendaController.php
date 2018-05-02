@@ -21,8 +21,6 @@ class PrendaController extends Controller
         $categorias = Categoria::where('status',1)->orderBy('nombre','asc')->get();
         $generos = Genero::where('status',1)->get();
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
-        $tallas = Talla::where('status',1)->get();
-        $colores = Color::where('status',1)->get();
         return view('admin/prendas/agregar',compact('categorias','generos','marcas','tallas','colores'));
     }
     public function crear(Request $request){
@@ -30,39 +28,12 @@ class PrendaController extends Controller
             'nombre' => 'required|unique:prendas|max:255',
             'precio' => 'required|numeric',
             'idmarca' => 'required|integer|exists:marcas,id',
-            'idcategoria' => 'required|integer|exists:categorias,id',
             'idgenero' => 'required|integer|exists:generos,id',
-            'idcolores' => 'required|array',
-            'idtallas' => 'required|array',
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
-        $colores = $request->get('idcolores');
         $prenda = Prenda::create($request->all());
-        $resultado;
-        if($prenda){
-            for ($i=0; $i < count($request->get('idtallas')); $i++) { 
-                $resultado = $prenda->prendastallas_pk()->create(array(
-                    'idprenda' => $prenda->id,
-                    'idtalla' => $request->get('idtallas')[$i]
-                ));
-            }
-            if($resultado)
-            {
-                foreach ($colores as $idtalla => $color) 
-                {
-                    foreach ($color as $value) 
-                    {
-                        $resultado = ColorPrenda::create(array(
-                            'idprenda' => $prenda->id,
-                            'idtalla' => $idtalla,
-                            'idcolor' => $value
-                        ));
-                    }
-                }
-            }
-            $msj = $resultado ? 'La prenda fue creada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
-        }else{$msj = 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';}
+        $msj = ($prenda)?'La prenda fue creada con éxito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
         return redirect()->back()->with('msj',$msj);
     }
     public function editar(Request $request){

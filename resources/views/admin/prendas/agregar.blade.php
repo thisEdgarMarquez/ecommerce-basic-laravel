@@ -64,34 +64,15 @@
                           <option value="0">Desactivada</option>
                         </select>
                       </div>
-                    </div> 
+                    </div>
                     <div class="form-group row">
-                        <table class="table table-striped table-bordered table-hover" id="tallasEntrada">
-                                <thead>
-                                    <tr>
-                                        <th>Talla</th>
-                                        <th>Colores</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($tallas as $talla)
-                                        <tr class="row-talla-color" id="{{$talla->id}}">
-                                            <td class="col-talla">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="checkbox" value="{{$talla->id}}" name="idtallas[]" />
-                                                    <label class="form-check-label">{{$talla->medida}}</label>
-                                                </div>
-                                            </td>
-                                            <td class="col-color">
-                                            @foreach($colores as $color)
-                                                <span class="check-color" style="background-color:#{{$color->hex}};"><input type="checkbox" name="idcolores[{{$talla->id}}][]" value="{{$color->id}}" title="{{$color->nombre}}"/></span>
-                                            @endforeach
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                      <label for="estado" class="col-4 col-form-label">Imágenes</label> 
+                      <div class="col-8">
+                        <input class="form-control" type="file" name="img1">
+                        <input class="form-control" type="file" name="img2">
+                        <input class="form-control" type="file" name="img3">
+                      </div>
+                    </div> 
                     <div class="form-group row">
                       <div class="offset-4 col-8">
                         <button name="submit" type="submit" id="submit-agregar-prenda" class="btn btn-primary">Submit</button>
