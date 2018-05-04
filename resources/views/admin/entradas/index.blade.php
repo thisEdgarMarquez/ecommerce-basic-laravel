@@ -14,16 +14,18 @@
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>Proveedor</th>
+						<th>Código</th>
 						<th>Fecha</th>
+						<th>Proveedor</th>						
 						<th>Estado</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($entradas as $entrada)
 					<tr data-id="{{$entrada->id}}">
-						<td>{{ $entrada->proveedor_pk['nombre'] }}</td>
+						<td>ENTR-{{$entrada->id}}</td>
 						<td>{{ $entrada->fecha }}</td>
+						<td>{{ $entrada->proveedor_pk['nombre'] }}</td>						
 						<td>@if($entrada->status) Activa @else Desactivada @endif</td>
 						<td>
 							<a href="{{route('entradaDetalles',['id' => $entrada->id])}}"><i class="fas fa-eye "></i></a>

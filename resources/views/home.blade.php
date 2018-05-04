@@ -50,7 +50,9 @@
             @foreach($prendas as $prenda)
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="{{route('detallesPrenda',['id' => $prenda->id])}}" ><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="{{route('detallesPrenda',['id' => $prenda->id])}}" >
+                  <img class="card-img-top" src="{{asset('uploads/'.(($prenda['img1'] != NULL)?$prenda['img1']:'default.png'))}}" alt="">
+                </a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="{{route('detallesPrenda',['id' => $prenda->id])}}" >{{$prenda->nombre}}</a>

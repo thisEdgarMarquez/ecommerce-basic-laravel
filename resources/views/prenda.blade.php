@@ -44,20 +44,20 @@
 
 <!--Gallery Hero-->
 <div class="gallery__hero">
-  <img src="https://public-619e3.firebaseapp.com/Product-Gallery/products/normal/product-01_view-01.jpg">
+  <img src="{{asset('/uploads/'.(($item->img1 != NULL)?$item->img1:'default.png'))}}">
 </div>
 <!--Gallery Hero-->
 
 <!--Gallery Thumbs-->
 <div class="gallery__thumbs">
-    <a href="https://public-619e3.firebaseapp.com/Product-Gallery/products/normal/product-01_view-01.jpg" data-gallery="thumb" class="is-active">
-      <img src="https://public-619e3.firebaseapp.com/Product-Gallery/products/thumb/product-01_view-01.jpg">
+    <a href="{{asset('/uploads/'.(($item->img1 != NULL)?$item->img1:'default.png'))}}" data-gallery="thumb" class="is-active">
+      <img src="{{asset('/uploads/'.(($item->img1 != NULL)?$item->img1:'default.png'))}}">
     </a>
-    <a href="https://public-619e3.firebaseapp.com/Product-Gallery/products/normal/product-01_view-02.jpg" data-gallery="thumb">
-      <img src="https://public-619e3.firebaseapp.com/Product-Gallery/products/thumb/product-01_view-02.jpg">
+    <a href="{{asset('/uploads/'.(($item->img2 != NULL)?$item->img2:'default.png'))}}" data-gallery="thumb">
+      <img src="{{asset('/uploads/'.(($item->img2 != NULL)?$item->img2:'default.png'))}}">
     </a>
-    <a href="https://public-619e3.firebaseapp.com/Product-Gallery/products/normal/product-01_view-03.jpg" data-gallery="thumb">
-      <img src="https://public-619e3.firebaseapp.com/Product-Gallery/products/thumb/product-01_view-03.jpg">
+    <a href="{{asset('/uploads/'.(($item->img3 != NULL)?$item->img3:'default.png'))}}" data-gallery="thumb">
+      <img src="{{asset('/uploads/'.(($item->img3 != NULL)?$item->img3:'default.png'))}}">
     </a>
 </div>
 <!--Gallery Thumbs-->
@@ -100,21 +100,11 @@
 			<dl class="param param-inline">
 				  <dt>Tallas</dt>
 				  <dd>
-					@foreach($item->prendastallas_pk as $tallaPrenda)
+					@foreach($tallas as $talla)
 				  	<label class="form-check form-check-inline">
-						@if($tallaPrenda->cantidad == 0)
-					  <input class="form-check-input" disabled type="radio" name="inlineRadioOptions" id="inlineRadio2" value="{{$tallaPrenda->id}}">
-						@else
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"  value="{{$tallaPrenda->id}}">
- 						@endif
-						@foreach($tallas as $talla)
-						 <span class="form-check-label">
- 								@if($talla->id == $tallaPrenda->idtalla)
-								 {{$talla->medida}}
-								@endif
-						@endforeach
-						</span>
-					</label>
+							<input class="form-check-input" {{($talla['cantidad'] == 0)?'disabled':''}} type="radio" name="inlineRadioOptions" id="inlineRadio2" value="{{$talla['id']}}">
+							<span class="form-check-label">{{$talla['medida']}}</span>
+						</label>
 					@endforeach
 				  </dd>
 			</dl>  <!-- item-property .// -->
@@ -123,23 +113,14 @@
 			<dl class="param param-inline">
 			  <dt>Cantidad</dt>
 			  <dd>
-				@if($item->cantidad == 0)
-			  	<input name="cantidad" type="number" disabled min="1" class="form-control form-control-sm">
-				@else
-					<input name="cantidad" type="number" min="1" class="form-control form-control-sm" value="1">
-				@endif
+					<input name="cantidad" type="number" min="0" class="form-control form-control-sm">
 			  </dd>
 			</dl>  <!-- item-property .// -->
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
 	<hr>
-	@if($item->cantidad == 0)
-	<a href="#" class="btn btn-lg btn-primary text-uppercase disabled"> comprar ahora </a>
-	<a href="#" class="btn btn-lg btn-outline-primary text-uppercase disabled"> <i class="fas fa-shopping-cart"></i> agregar al carrito </a>
-	@else 
 	<a href="#" class="btn btn-lg btn-primary text-uppercase"> comprar ahora </a>
 	<a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> agregar al carrito </a>
-	@endif
 </article> <!-- card-body.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->

@@ -27,7 +27,7 @@
           @foreach($prendas as $prenda)
           <tr data-id="{{$prenda->id}}">
             <td>{{$prenda->nombre}}</td>
-            <td>{{$prenda->precio}}</td>
+            <td>{{$prenda->precio}} BsF</td>
             <td>{{$prenda->marca_pk['nombre']}}</td>
             <td>{{$prenda->categoria_pk['nombre']}}</td>
             <td>{{$prenda->genero_pk['nombre']}}</td>

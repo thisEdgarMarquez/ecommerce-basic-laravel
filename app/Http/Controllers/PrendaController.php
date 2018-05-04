@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Prenda;
@@ -11,6 +13,8 @@ use App\Marca;
 use App\Talla;
 use App\Color;
 use App\ColorPrenda;
+use App\EntradaPrenda;
+
 class PrendaController extends Controller
 {
     public function index(){
@@ -30,9 +34,23 @@ class PrendaController extends Controller
             'idmarca' => 'required|integer|exists:marcas,id',
             'idgenero' => 'required|integer|exists:generos,id',
             'descripcion' => 'string|required',
+            'imagenes["img1"]'=>'image',
+            'imagenes["img2"]'=>'image',
+            'imagenes["img3"]'=>'image',
             'status' => 'required|boolean'
         ]);
-        $prenda = Prenda::create($request->all());
+        
+        $data = $request->all();
+
+        if($request["imagenes"] != NULL){
+            foreach($request->file('imagenes') as $key => $img){
+                $random = str_random(6);
+                $fileName = $random.'-'.$img->getClientOriginalName();
+                $img->move('uploads', $fileName);
+                $data[$key] = $fileName; 
+            }
+        }
+        $prenda = Prenda::create($data);
         $msj = ($prenda)?'La prenda fue creada con éxito.' : 'Lo sentimos, ocurrió un error en el proceso de creación de la prenda.';
         return redirect()->back()->with('msj',$msj);
     }
@@ -76,8 +94,27 @@ class PrendaController extends Controller
         return response()->json(['error' => false,'msj' => $msj]);
     }
     public function detalles(Request $request){
-        $prenda = Prenda::findOrFail($request->segment(2))->with('categoria_pk','prendastallas_pk')->get();
+        $prenda = Prenda::where('id', $request->segment(2))->with('categoria_pk')->get();
         $tallas = Talla::all();
+        $tallas_cant = DB::select("SELECT idtalla, SUM(cantidad) AS cantidad FROM entradas_prendas WHERE idprenda = ".$request->segment(2)." GROUP BY idtalla");
+        
+        $mappedTallas = array();
+
+        foreach($tallas as $talla){
+            foreach($tallas_cant as $tc){
+                if($tc->idtalla == $talla['id']){
+                    array_push($mappedTallas, [
+                        'id'=>$talla['id'],
+                        'medida'=>$talla['medida'],
+                        'cantidad'=>$tc->cantidad,
+                        'status'=>$talla['status']
+                    ]);
+                }
+            }
+        }
+        
+        $tallas = $mappedTallas;
+
         return view('prenda',compact('prenda','tallas'));
     }
 }

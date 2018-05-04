@@ -22,9 +22,9 @@ class CreatePrendasTable extends Migration
             $table->integer('idcategoria')->unsigned();
             $table->integer('idgenero')->unsigned();
             $table->string('descripcion');
-            $table->string('img1',60)->nullable();
-            $table->string('img2',60)->nullable();
-            $table->string('img3',60)->nullable();;
+            $table->string('img1',255)->nullable();
+            $table->string('img2',255)->nullable();
+            $table->string('img3',255)->nullable();;
             $table->timestamps();
         });
     }

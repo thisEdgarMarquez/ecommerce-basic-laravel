@@ -6,7 +6,7 @@
     </div>
 
     <div>
-            <form method="POST" action="{{route('crearPrenda')}}" id="crea-prenda">
+            <form method="POST" action="{{route('crearPrenda')}}" id="crea-prenda" enctype="multipart/form-data">
                 {{csrf_field()}}
                     <div class="form-group row">
                       <label for="nombre" class="col-4 col-form-label">Nombre</label> 
@@ -68,9 +68,9 @@
                     <div class="form-group row">
                       <label for="estado" class="col-4 col-form-label">Imágenes</label> 
                       <div class="col-8">
-                        <input class="form-control" type="file" name="img1">
-                        <input class="form-control" type="file" name="img2">
-                        <input class="form-control" type="file" name="img3">
+                        <input class="form-control" type="file" name="imagenes[img1]" accept="image/*">
+                        <input class="form-control" type="file" name="imagenes[img2]" accept="image/*">
+                        <input class="form-control" type="file" name="imagenes[img3]" accept="image/*">
                       </div>
                     </div> 
                     <div class="form-group row">
