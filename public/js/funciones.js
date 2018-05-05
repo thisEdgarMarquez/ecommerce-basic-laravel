@@ -157,13 +157,14 @@ $(document).ready(function(){
 });
 
 
-//Validación de Tallas y Colores al Agregar prenda
+//Validación de la cantidad de Prenda en Detalles para que no se compre más
+//de la cantidad disponible en el inventario
 
-$('#crea-prenda').on('submit', function(e){
+$('#form-detalles-prenda').on('submit', function(e){
     
-    var isValid = true;
+    var isValid = false;
 
-    $('.row-talla-color').each(function(i){
+    /* $('.row-talla-color').each(function(i){
         
         if($(this).find('.col-talla .checkbox').prop('checked')){
 
@@ -181,10 +182,24 @@ $('#crea-prenda').on('submit', function(e){
             if(cantCheckColorsFalse == cantCheckColors) isValid = false;
 
         }
-    });
-    
+    }); */
+    var radioTalla = $(this).find("input[name='talla']:checked");
+    var talla = radioTalla.val();
+    var tallaMaxCant = radioTalla.data("maxcant");
+    var cant = $(this).find("input[name='cantidad']").val();
+
+    if(cant < 1) {
+        alert('Lo sentimos, debes llevar al menos una unidad de este producto para continuar');
+        return false;
+    }else if(isNaN(cant)){
+        alert('Error: La cantidad debe ser numérica');
+        return false;
+    }
+
+    isValid = (cant > tallaMaxCant)? false: true;
+
     if(!isValid) {
-        alert('Error: Las Tallas seleccionadas deben poseer al menos un Color');
+        alert('Lo sentimos, solo nos quedan ' + tallaMaxCant + ' unidades de este producto');
         return false;
     }
 })
