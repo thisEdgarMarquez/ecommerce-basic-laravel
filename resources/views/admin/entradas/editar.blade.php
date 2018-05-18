@@ -1,20 +1,19 @@
 @extends('admin.layouts.app')
 @section('content')
-
 <div class="jumbotron text-center">
-	<h1 class="text-uppercase">AGREGAR ENTRADA</h1>
+	<h1 class="text-uppercase">EDITAR ENTRADA</h1>
 </div>
 
 <div class="col-md-12">
     <div>
-            <form method="POST" action="{{route('crearEntrada')}}">
-                {{csrf_field()}}
+            <form method="POST" action="{{route('actualizarEntrada')}}">
+                {{csrf_field()}}                
                     <div class="form-group row">
                       <label for="idproveedor" class="col-4 col-form-label">Proveedor</label> 
                       <div class="col-8">
                         <select class="custom-select" name="idproveedor">
                             @foreach($proveedores as $proveedor)
-                                <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                                <option value="{{$proveedor->id}}" {{($proveedor->id==$entrada[0]->idproveedor)?'selected':''}}>{{$proveedor->nombre}}</option>
                             @endforeach
                         </select>
                       </div>
@@ -22,15 +21,15 @@
                     <div class="form-group row">
                         <label for="fecha" class="col-4 col-form-label">Fecha</label> 
                             <div class="col-8">
-                                <input type="text" name="fecha" class="form-control input-lg" id="fechaEntrada">
+                                <input type="text" name="fecha" class="form-control input-lg" id="fechaEntrada" value="{{$entrada[0]->fecha}}">
                             </div>
                     </div>
                     <div class="form-group row">
                       <label for="estado" class="col-4 col-form-label">Estado</label> 
                       <div class="col-8">
                         <select id="estado" name="status" class="custom-select" required="required">
-                          <option value="1">Activo</option>
-                          <option value="0">Desactivado</option>
+                          <option value="1" {{($entrada[0]->status == 1)?'selected':''}}>Activo</option>
+                          <option value="0" {{($entrada[0]->status == 0)?'selected':''}}>Desactivado</option>
                         </select>
                       </div>
                     </div> 
@@ -68,17 +67,33 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td class="col-md-3"><input type="number" name="cantidad" class="form-control" min="1" id="cantidad"></td>
-                                            
+                                            <td class="col-md-3">
+                                                <input type="number" name="cantidad" class="form-control" min="1" id="cantidad">
+                                            </td>                                                
                                             <td>
-                                            <div class="col-md-12 text-center"><button onclick="return agregarPrenda()" class="btn btn-success" ><i class="fas fa-plus "></i></button></div>    
+                                                <div class="col-md-12 text-center"><button onclick="return agregarPrenda()" class="btn btn-success" ><i class="fas fa-plus "></i></button></div>    
                                             </td>
                                         </tr>
+
+<!-- prendas de esta entrada -->                                        
+                                        @foreach($mapEntradaPrenda as $entrada)
+                                        <tr class="tr-editar-entrada">
+                                            <td>{{$entrada['_prenda']['nombre']}} <input type="hidden" name="idprenda[]" value="{{$entrada['_prenda']['idprenda']}}"></td>
+                                            <td>{{$entrada['_talla']['medida']}} <input type="hidden" name="idtalla[]" value="{{$entrada['_talla']['medida']}}"></td>
+                                            <td>{{$entrada['_color']['nombre']}} <input type="hidden" name="idcolor[]" value="{{$entrada['_color']['nombre']}}"></td>
+                                            <td>{{$entrada['cantidad']}} <input type="hidden" name="cantidad[]" value="{{$entrada['cantidad']}}"></td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-danger btn-rm-entrada"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+<!-- prendas de esta entrada -->
+
                                     </tbody>
                                 </table>
                             </div>
                     <div class="text-center">
-                        <button name="submit" type="submit" class="btn btn-primary">Crear</button>
+                        <button name="submit" type="submit" class="btn btn-primary">Editar</button>
                     </div>
                   </form>
                     @if ($errors->any())

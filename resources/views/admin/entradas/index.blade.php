@@ -1,12 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="row">
-	<div class="col-md-12">
-		<div class="text-center">
-			<a href="{{route('agregarEntrada')}}">
-			<button class="btn btn-success">Agregar</button></a>
-		</div>
-	</div>
+<div class="jumbotron text-center">
+	<h1 class="text-uppercase">ENTRADAS</h1>
+	<a href="{{route('agregarEntrada')}}">
+		<button class="btn btn-success btn-lg"> <i class="fa fa-plus"></i> Agregar</button>
+	</a>
 </div>
 <div class="row">
 	<div class="col-md-12">
@@ -18,6 +16,7 @@
 						<th>Fecha</th>
 						<th>Proveedor</th>						
 						<th>Estado</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,7 +27,17 @@
 						<td>{{ $entrada->proveedor_pk['nombre'] }}</td>						
 						<td>@if($entrada->status) Activa @else Desactivada @endif</td>
 						<td>
-							<a href="{{route('entradaDetalles',['id' => $entrada->id])}}"><i class="fas fa-eye "></i></a>
+							<div class="btn-group btn-group-xs" role="group" aria-label="...">
+								<a href="{{route('editarEntrada',['id' => $entrada->id])}}" class="btn btn-sm btn-info">
+									Editar <i class="fas fa-pencil-alt"></i>
+								</a>
+								<a href="{{route('entradaDetalles',['id' => $entrada->id])}}" class="btn btn-sm btn-primary">
+									Detalles <i class="fas fa-eye"></i>
+								</a>
+								<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar el Género?','{{1}}',{{1}});"  class="btn btn-sm btn-danger">
+									Eliminar <i class="fas fa-trash "></i>
+								</a>
+							</div>
 						</td>
 					</tr>
 					@endforeach

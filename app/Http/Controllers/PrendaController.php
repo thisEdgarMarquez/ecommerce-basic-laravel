@@ -60,9 +60,8 @@ class PrendaController extends Controller
         $generos = Genero::where('status',1)->get();
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
         $tallas = Talla::all()->toArray();
-        $prendatallas = $prenda->prendastallas_pk()->get()->toArray();
-        $prendacolores = $prenda->prendascolores_pk()->get();
-        return view('admin/prendas/editar',compact('categorias','generos','marcas','prenda','tallas','prendatallas','prendacolores'));
+        $tallas_cant = DB::select("SELECT idtalla, SUM(cantidad) AS cantidad FROM entradas_prendas WHERE idprenda = ".$request->segment(4)." GROUP BY idtalla");
+        return view('admin/prendas/editar',compact('categorias','generos','marcas','prenda','tallas', 'tallas_cant'));
     }
     public function actualizar(Request $request){
         $prenda = Prenda::findOrFail($request->get('id'));
@@ -72,20 +71,12 @@ class PrendaController extends Controller
             'idmarca' => 'required|integer|exists:marcas,id',
             'idcategoria' => 'required|integer|exists:categorias,id',
             'idgenero' => 'required|integer|exists:generos,id',
-            'idtallas' => 'required|array',
             'descripcion' => 'string|required',
             'status' => 'required|boolean'
         ]);
-        $prenda->fill($request->all());
-        $prenda->prendastallas_pk()->delete();
-        $resultado;
-        for ($i=0; $i < count($request->get('idtallas')) ; $i++) { 
-            $resultado = $prenda->prendastallas_pk()->create(array(
-                'idprenda' => $prenda->id,
-                'idtalla' => $request->get('idtallas')[$i]
-            ));
-        }
-        $msj = $resultado ? 'La prenda fue modificada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de modificación de la prenda.';
+        $prenda->fill($request->all());        
+        $actualizacion = $prenda->save();
+        $msj = $actualizacion ? 'La Prenda fue modificada con éxito.' : 'Lo sentimos, ocurrió un error  al modificar de la prenda.';
         return redirect()->back()->with('msj',$msj);
     }
     public function eliminar(Request $request){

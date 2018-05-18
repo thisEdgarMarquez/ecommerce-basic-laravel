@@ -28,17 +28,23 @@ function agregarPrenda(){
                 <td>${$('#idprenda > option:selected').text()}<input type="hidden" name="idprenda[]" value="${$('#idprenda').val()}"></td>
                 <td>${$('#idtalla > option:selected').text()}<input type="hidden" name="idtalla[]" value="${$('#idtalla').val()}"></td>
                 <td>${$('#idcolor > option:selected').text()}<input type="hidden" name="idcolor[]" value="${$('#idcolor').val()}"></td>
-                <td><div class="row"><div class="col-md-10">${$('#cantidad').val()}<input type="hidden" name="cantidad[]" value="${$('#cantidad').val()}"></div><div class="col-md-2"><i class="fas fa-trash" onClick="eliminarEntrada(${ifilaagPrenda})"></i></div></div></td>
+                <td>${$('#cantidad').val()}<input type="hidden" name="cantidad[]" value="${$('#cantidad').val()}"></td>
+                <td class="text-center">
+                    <button class="btn btn-danger" onClick="eliminarEntrada(${ifilaagPrenda})"><i class="fas fa-trash"></i></button>
+                </td>
             </tr>
         `);
         ifilaagPrenda++;
     }
     return false;
 }
-//Funcion para eliminar las prendas que contiene una entrada
-function eliminarEntrada(id){
-    $(`#fila-${id}`).remove();
-}
+
+//Eliminar Entrada al Editar 
+$('.tr-editar-entrada').each(function(){
+    var tr = $(this);
+    tr.find('.btn-rm-entrada').on('click', function(){tr.remove()});
+})
+
 //Funcion para agregar las tallas que contiene una prenda.
 var ifilaagTalla
 function agregarTalla(){

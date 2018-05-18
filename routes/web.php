@@ -75,6 +75,8 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::get('admin/entradas/ver/{id}','EntradaController@getEntradaDetalle')->name('entradaDetalles')->where('id','[1-9]+');
     Route::get('admin/entradas/gettallas','EntradaController@gettallas')->name('gettallas');
     Route::post('admin/entradas/crear','EntradaController@crear')->name('crearEntrada');
+    Route::get('admin/entradas/editar/{id}','EntradaController@editar')->name('editarEntrada')->where('id','[1-9]+');
+    Route::post('admin/entradas/actualizar','EntradaController@actualizar')->name('actualizarEntrada');
 });
 
 //Home 

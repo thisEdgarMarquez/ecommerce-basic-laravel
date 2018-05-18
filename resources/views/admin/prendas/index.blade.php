@@ -33,12 +33,8 @@
             <td>{{$prenda->genero_pk['nombre']}}</td>
             <td>{{$prenda->descripcion}}</td>
             <td>{{$prenda->cantidad}}</td>
-            @if($prenda->status)
-              <td>Activa</td>
-            @else
-              <td>Desactivada</td>
-                        @endif
-                        <td>
+            <td>{{($prenda->status)? 'Activa': 'Desactivada'}}</td>
+            <td>
 							<div class="btn-group btn-group-xs" role="group" aria-label="...">
 								<a href="{{route('editarPrenda',['id' => $prenda->id])}}" class="btn btn-sm btn-info">
 									Editar <i class="fas fa-pencil-alt"></i>

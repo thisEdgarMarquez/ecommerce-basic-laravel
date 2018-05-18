@@ -1,12 +1,20 @@
 @extends('admin.layouts.app')
 @section('content')
+<div class="jumbotron text-center">
+	<h1 class="text-uppercase">DETALLES DE PRENDA</h1>
+</div>
+
 <div class="row">
 	<div class="col-md-12">
+        <table cellpadding="10">
         @foreach($entrada as $data)
-        <label>Proveedor:{{$data->proveedor_pk->nombre}}</label>
-        <label>Fecha de ingreso:{{$data->fecha}}</label>
-        <label>Estado: @if($data->status == 1) Activa @else Desactivada @endif</label>
+            <tr><td><b class="text-primary"> Código </b> </td><td>: {{'ENTR-'.$data->id}}</td></tr>
+            <tr><td><b class="text-primary"> Proveedor </b> </td><td>: {{$data->proveedor_pk->nombre}}</td></tr>
+            <tr><td><b class="text-primary"> Fecha-Ingreso </b> </td><td>: {{$data->fecha}}</td></tr>
+            <tr><td><b class="text-primary"> Estado </b> </td><td>: {{($data->status==1)? 'Activa' : 'Desactivada'}}</td></tr>
         @endforeach
+        <table>
+        <br>
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
