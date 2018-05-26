@@ -19,6 +19,11 @@ function confirmacion(msj,url,iditem){
 
     }
 }
+function eliminarPrendaEntrada(id){
+    $('form').append(`
+    <input type="hidden" name="idprendaeliminar[]" value="${id}" />
+    `);
+}
 //Funcion para agregar las prendas que contiene una entrada
 var ifilaagPrenda = 1;
 function agregarPrenda(){

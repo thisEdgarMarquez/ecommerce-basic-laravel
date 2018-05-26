@@ -34,7 +34,7 @@
 								<a href="{{route('entradaDetalles',['id' => $entrada->id])}}" class="btn btn-sm btn-primary">
 									Detalles <i class="fas fa-eye"></i>
 								</a>
-								<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar el Género?','{{1}}',{{1}});"  class="btn btn-sm btn-danger">
+								<a href="#" onClick="return confirmacion('¿Estás seguro de eliminar la entrada?','{{route('eliminarEntrada')}}',{{$entrada->id}});"  class="btn btn-sm btn-danger">
 									Eliminar <i class="fas fa-trash "></i>
 								</a>
 							</div>

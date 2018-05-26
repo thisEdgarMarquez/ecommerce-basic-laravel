@@ -8,10 +8,10 @@
 	<div class="col-md-12">
         <table cellpadding="10">
         @foreach($entrada as $data)
-            <tr><td><b class="text-primary"> Código </b> </td><td>: {{'ENTR-'.$data->id}}</td></tr>
-            <tr><td><b class="text-primary"> Proveedor </b> </td><td>: {{$data->proveedor_pk->nombre}}</td></tr>
-            <tr><td><b class="text-primary"> Fecha-Ingreso </b> </td><td>: {{$data->fecha}}</td></tr>
-            <tr><td><b class="text-primary"> Estado </b> </td><td>: {{($data->status==1)? 'Activa' : 'Desactivada'}}</td></tr>
+            <tr><td><b class="text-primary"> Código </b> </td><td> {{'ENTR-'.$data->id}}</td></tr>
+            <tr><td><b class="text-primary"> Proveedor </b> </td><td> {{$data->proveedor_pk->nombre}}</td></tr>
+            <tr><td><b class="text-primary"> Fecha de ingreso </b> </td><td> {{$data->fecha}}</td></tr>
+            <tr><td><b class="text-primary"> Estado </b> </td><td> {{($data->status==1)? 'Activa' : 'Desactivada'}}</td></tr>
         @endforeach
         <table>
         <br>

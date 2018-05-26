@@ -3,12 +3,12 @@
 <div class="jumbotron text-center">
 	<h1 class="text-uppercase">EDITAR ENTRADA</h1>
 </div>
-
 <div class="col-md-12">
     <div>
             <form method="POST" action="{{route('actualizarEntrada')}}">
                 {{csrf_field()}}                
                     <div class="form-group row">
+                     <input type="hidden" name="id" value="{{$entrada[0]['id']}}" />
                       <label for="idproveedor" class="col-4 col-form-label">Proveedor</label> 
                       <div class="col-8">
                         <select class="custom-select" name="idproveedor">
@@ -47,28 +47,28 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select name="idprenda" class="custom-select input-lg" id="idprenda" onchange="actualizarTallaPrenda(this,document.getElementById('idtalla'),'{{route('gettallas')}}')">
+                                                <select name="select_prendas" class="custom-select input-lg" id="idprenda" onchange="actualizarTallaPrenda(this,document.getElementById('idtalla'),'{{route('gettallas')}}')">
                                                     @foreach($prendas as $prenda)
                                                         <option value="{{$prenda['id']}}">{{$prenda['nombre']}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
                                             <td>                                                
-                                                <select name="idtalla" class="custom-select input-lg" id="idtalla">
+                                                <select name="select_tallas" class="custom-select input-lg" id="idtalla">
                                                     @foreach($tallas as $talla)
                                                         <option value="{{$talla['id']}}">{{$talla['medida']}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
                                             <td>                                                
-                                                <select name="idcolor" class="custom-select input-lg" id="idcolor">
+                                                <select name="select_color" class="custom-select input-lg" id="idcolor">
                                                     @foreach($colores as $color)
                                                         <option value="{{$color['id']}}">{{$color['nombre']}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
                                             <td class="col-md-3">
-                                                <input type="number" name="cantidad" class="form-control" min="1" id="cantidad">
+                                                <input type="number" name="input_cantidad" class="form-control" min="1" id="cantidad">
                                             </td>                                                
                                             <td>
                                                 <div class="col-md-12 text-center"><button onclick="return agregarPrenda()" class="btn btn-success" ><i class="fas fa-plus "></i></button></div>    
@@ -78,12 +78,12 @@
 <!-- prendas de esta entrada -->                                        
                                         @foreach($mapEntradaPrenda as $entrada)
                                         <tr class="tr-editar-entrada">
-                                            <td>{{$entrada['_prenda']['nombre']}} <input type="hidden" name="idprenda[]" value="{{$entrada['_prenda']['idprenda']}}"></td>
-                                            <td>{{$entrada['_talla']['medida']}} <input type="hidden" name="idtalla[]" value="{{$entrada['_talla']['medida']}}"></td>
-                                            <td>{{$entrada['_color']['nombre']}} <input type="hidden" name="idcolor[]" value="{{$entrada['_color']['nombre']}}"></td>
-                                            <td>{{$entrada['cantidad']}} <input type="hidden" name="cantidad[]" value="{{$entrada['cantidad']}}"></td>
+                                            <td>{{$entrada['_prenda']['nombre']}}</td>
+                                            <td>{{$entrada['_talla']['medida']}}</td>
+                                            <td>{{$entrada['_color']['nombre']}}</td>
+                                            <td>{{$entrada['cantidad']}}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-danger btn-rm-entrada"><i class="fas fa-trash"></i></button>
+                                                <button onClick="return eliminarPrendaEntrada({{$entrada['identrada_prenda']}});" type="button" class="btn btn-danger btn-rm-entrada"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         @endforeach

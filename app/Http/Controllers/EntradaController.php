@@ -68,6 +68,7 @@ class EntradaController extends Controller
             $nomPrenda;
             $medTalla;
             $nomColor;
+            $identrada = $entrada->id;
 
             foreach($prendas as $prenda){
                 if($prenda['id'] == $entrada->idprenda) {
@@ -86,6 +87,7 @@ class EntradaController extends Controller
             }
 
             array_push($mapEntradaPrenda, [
+                'identrada_prenda' => $entrada->id,
                 '_prenda'=>[
                     'idprenda'=> $entrada->idprenda,
                     'nombre'=> $nomPrenda
@@ -107,19 +109,39 @@ class EntradaController extends Controller
     }
     public function actualizar(Request $request){
         $entrada = Entrada::findOrFail($request->get('id'));
-        /* $this->validate($request,[
-            'nombre' => ['required','max:255',Rule::unique('prendas')->ignore($request->get('id'))],
-            'precio' => 'required|numeric',
-            'idmarca' => 'required|integer|exists:marcas,id',
-            'idcategoria' => 'required|integer|exists:categorias,id',
-            'idgenero' => 'required|integer|exists:generos,id',
-            'descripcion' => 'string|required',
-            'status' => 'required|boolean'
-        ]); */
-        /* $prenda->fill($request->all());
-        $actualizacion = $prenda->save();
-        $msj = $actualizacion ? 'La Prenda fue modificada con éxito.' : 'Lo sentimos, ocurrió un error  al modificar de la prenda.'; */
-        
-        return redirect()->back()->with('msj',$msj);
+        $this->validate($request,[
+            'idproveedor' => 'required|exists:proveedores,id|numeric',
+            'fecha' => 'required|date',
+            'status' => 'required|boolean',
+            'idprendaelimnar' => 'array'
+        ]); 
+        $entrada->fill($request->all());
+        $actualizacion = $entrada->save();
+        if($actualizacion){
+            if(!empty($request->get('idprendaeliminar')))
+            {
+                foreach ($request->get('idprendaeliminar') as $id) {
+                    EntradaPrenda::destroy($id);
+                }
+            }
+            if(!empty($request->get('idprenda'))){
+                for ($i=0; $i < count($request->get('idprenda')); $i++) { 
+                    EntradaPrenda::create([
+                        'identrada' => $entrada->id,
+                        'idprenda' => $request->get('idprenda')[$i],
+                        'idtalla' => $request->get('idtalla')[$i],
+                        'idcolor' => $request->get('idcolor')[$i],
+                        'cantidad' => $request->get('cantidad')[$i]
+                    ]);
+                }
+            }
+        }
+        $msj = $actualizacion ? 'La entrada fue modificada con éxito.' : 'Lo sentimos, ocurrió un error al modificar de la entrada.';
+        return redirect()->back()->with('msj',$msj); 
+    }
+    public function eliminar(Request $request){
+        Entrada::findOrFail($request->get('id'));    
+        $msj = Entrada::destroy($request->get('id')) ? 'La entrada fue eliminada con exito.' : 'Lo sentimos, ocurrió un error en el proceso de eliminación de la entrada.';
+        return response()->json(['error' => false, 'msj' => $msj]);
     }
 }

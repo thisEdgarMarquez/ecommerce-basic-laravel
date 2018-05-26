@@ -77,6 +77,7 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/entradas/crear','EntradaController@crear')->name('crearEntrada');
     Route::get('admin/entradas/editar/{id}','EntradaController@editar')->name('editarEntrada')->where('id','[1-9]+');
     Route::post('admin/entradas/actualizar','EntradaController@actualizar')->name('actualizarEntrada');
+    Route::post('admin/entradas/eliminar','EntradaController@eliminar')->name('eliminarEntrada');
 });
 
 //Home 
