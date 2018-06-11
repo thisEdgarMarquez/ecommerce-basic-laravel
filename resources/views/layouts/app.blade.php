@@ -16,6 +16,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
+        @guest @else<li class="nav-item"><span style="padding-top:20px;color:white;">Bienvenido {{Auth::user()->nombre}}</span></li>@endguest
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,6 +44,7 @@
                 <a class="nav-link" href="{{route('login')}}">Ingresar</a>
             </li>
             @else
+            <li class="nav-item"><a class="nav-link" ref="{{route('carro')}}" href="{{route('carro')}}"><i class="fa fa-shopping-bag"></i> Carro</a></li>
             <li class="nav-item"><a class="nav-link" ref="{{route('miperfil')}}" href="{{route('miperfil')}}">Perfil</a></li>
             <li class="nav-item">
                 <a class="nav-link" ref="{{ route('logout') }}"
