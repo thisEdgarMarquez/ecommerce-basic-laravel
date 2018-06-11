@@ -2,7 +2,6 @@
 @section('content')
 @if(count(\Session::get('carro')) > 0)
 <div class="container">
-        {{csrf_field()}}
 	<table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
@@ -48,7 +47,7 @@
                 <td colspan="2" class="hidden-xs"></td>
                 <td></td>
                 <td class="hidden-xs text-center"><strong>Total {{$total}} BsF</strong></td>
-                <td><a href="#" class="btn btn-success btn-block">Pagar <i class="fa fa-angle-right"></i></a></td>
+                <td><a href="{{route('carroComprar')}}" class="btn btn-success btn-block">Comprar <i class="fa fa-angle-right"></i></a></td>
             </tr>
         </tfoot>
     </table>

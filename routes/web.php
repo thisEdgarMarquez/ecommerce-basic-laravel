@@ -84,6 +84,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
 Route::group(['middleware' => 'auth'],function(){
     Route::get('perfil','UsuarioController@miperfil')->name('miperfil');
     Route::post('perfil/editar','UsuarioController@editarPerfil')->name('editarPerfil');
+
+    //Carro
+    Route::get('carro','CarroController@index')->name('carro');
+    Route::post('carro/agregar','CarroController@agregar')->name('carroAgregar');
+    Route::post('carro/editar','CarroController@editar')->name('carroEditar');
+    Route::get('carro/eliminar/{id}','CarroController@eliminar')->name('carroEliminar')->where('id','[1-9]+');
+    Route::get('carro/comprar','CarroController@comprar')->name('carroComprar');
 });
 Route::get('/','InicioController@index')->name('inicio');
 //Detalles Prenda

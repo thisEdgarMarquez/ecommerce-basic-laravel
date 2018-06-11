@@ -34,8 +34,8 @@
  }
 </style>
 @foreach($prenda as $item)
-<form id="form-detalles-prenda">
-
+<form id="form-detalles-prenda" action="{{route('carroAgregar')}}" method="POST">
+{{csrf_field()}}
 <div class="card">
 	<div class="row">
 		<aside class="col-sm-5 border-right">
@@ -54,7 +54,7 @@
 				<div class="gallery__thumbs">
 						<a href="{{asset('/uploads/'.(($item->img1 != NULL)?$item->img1:'default.png'))}}" data-gallery="thumb" class="is-active">
 							<img src="{{asset('/uploads/'.(($item->img1 != NULL)?$item->img1:'default.png'))}}">
-						</a>
+							<input type="hidden" name="img" value="{{asset('/uploads/'.(($item->img1 != NULL)?$item->img1:'default.png'))}}" />						</a>
 						<a href="{{asset('/uploads/'.(($item->img2 != NULL)?$item->img2:'default.png'))}}" data-gallery="thumb">
 							<img src="{{asset('/uploads/'.(($item->img2 != NULL)?$item->img2:'default.png'))}}">
 						</a>
@@ -105,7 +105,7 @@
 								<dd>
 								@foreach($tallas as $talla)
 									<label class="form-check form-check-inline" title="Disponible: {{$talla['cantidad']}}">
-										<input class="form-check-input" {{($talla['cantidad'] == 0)?'disabled':''}} type="radio" name="talla" id="inlineRadio2" value="{{$talla['id']}}" data-maxcant="{{$talla['cantidad']}}">
+										<input class="form-check-input" {{($talla['cantidad'] == 0)?'disabled':''}} type="radio" name="talla" id="inlineRadio2" value="{{$talla['id']}}" data-maxcant="{{$talla['cantidad']}}">										<input type="hidden" name="idtalla" value="{{$talla['id']}}" />
 										<span class="form-check-label">{{$talla['medida']}}</span>
 									</label>
 								@endforeach
@@ -121,10 +121,21 @@
 						</dl>  <!-- item-property .// -->
 					</div> <!-- col.// -->
 				</div> <!-- row.// -->
-
+				<input type="hidden" name="id" value={{$item->id}} />
+				<input type="hidden" name="precio" value={{$item->precio}} />
+				<input type="hidden" name="nombre" value="{{$item->nombre}}" />
 				<hr>
-				<button type="submit" class="btn btn-lg btn-primary text-uppercase"> comprar ahora </button>
-				<a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> agregar al carrito </a>
+				 @guest
+				 <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Debe iniciar sesión antes de comprar">
+						<input disabled type="submit" class="btn btn-lg btn-disabled text-uppercase " value="Comprar Ahora"  />
+					</span>
+					<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Debe iniciar sesión antes de comprar">
+						<a href="#" class="btn btn-lg btn-outline-primary text-uppercase disabled"> <i class="fas fa-shopping-cart"></i> agregar al carrito </a>
+					</span>
+					@else
+					<input type="submit" class="btn btn-lg btn-primary text-uppercase " value="Comprar Ahora"  />
+					<a href="#" class="btn btn-lg btn-outline-primary text-uppercase	"> <i class="fas fa-shopping-cart"></i> agregar al carrito </a>
+						@endguest
 		</article> <!-- card-body.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->

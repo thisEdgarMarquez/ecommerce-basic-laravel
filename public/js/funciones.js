@@ -19,6 +19,21 @@ function confirmacion(msj,url,iditem){
 
     }
 }
+function editarCarro(id,url){
+    var cantidad = $(`input[name='cantidad-${id}']`).val();
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        type:"POST",
+        url:url,
+        data:{id:id,cantidad:cantidad}
+    }).done(function(res){
+        location.reload();
+    }).fail(function(err){
+        console.log(err);
+    });
+}
 function eliminarPrendaEntrada(id){
     $('form').append(`
     <input type="hidden" name="idprendaeliminar[]" value="${id}" />
