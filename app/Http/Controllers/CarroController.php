@@ -81,6 +81,7 @@ class CarroController extends Controller
                     'idfactura' => $id,
                     'idprenda' => $item['id'],
                     'idcolor' => 1,
+                    'idtalla' => $item['id_talla'], 
                     'cantidad' => $item['cantidad']
                 ));
                 \Session::put('carro',array());
