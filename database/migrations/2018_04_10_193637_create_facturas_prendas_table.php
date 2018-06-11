@@ -17,10 +17,12 @@ class CreateFacturasPrendasTable extends Migration
             $table->increments('id');
             $table->integer('idfactura')->unsigned();
             $table->integer('idprenda')->unsigned();
+            $table->integer('idcolor')->unsigned();
             $table->integer('cantidad')->default('0');
             $table->timestamps();
             $table->foreign('idfactura')->references('id')->on('facturas')->onUpdate('cascade');
             $table->foreign('idprenda')->references('id')->on('prendas')->onUpdate('cascade');
+            $table->foreign('idcolor')->references('id')->on('colores')->onUpdate('cascade');
         });
     }
 
