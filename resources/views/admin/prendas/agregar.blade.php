@@ -53,7 +53,7 @@
                     <div class="form-group row">
                       <label for="descripcion" class="col-4 col-form-label">Descripción</label> 
                       <div class="col-8">
-                        <textarea id="descripcion" name="descripcion" cols="40" rows="5" class="form-control" required="required"></textarea>
+                        <textarea style=" text-transform:capitalize;" id="descripcion" name="descripcion" cols="40" rows="5" class="form-control" required="required"></textarea>
                       </div>
                     </div>
                     <div class="form-group row">
