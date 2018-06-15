@@ -94,6 +94,11 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('carro/editar','CarroController@editar')->name('carroEditar');
     Route::get('carro/eliminar/{id}','CarroController@eliminar')->name('carroEliminar')->where('id','[0-9]+');
     Route::get('carro/comprar','CarroController@comprar')->name('carroComprar');
+    Route::get('carro/pagar/{id}','PagoController@pagarGET')->name('pagarGET')->where('id','[0-9]+');
+    Route::post('carro/pagar','PagoController@pagarPOST')->name('pagarPOST');
+
+    //PDF
+    Route::get('pdf/factura/{id}','FacturaController@pdf')->name('pdfFactura')->where('id','[0-9]+');
 });
 Route::get('/','InicioController@index')->name('inicio');
 //Detalles Prenda

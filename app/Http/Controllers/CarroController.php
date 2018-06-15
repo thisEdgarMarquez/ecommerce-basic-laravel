@@ -72,7 +72,7 @@ class CarroController extends Controller
             'fecha' => now(),
             'monto' => $this->total(),
             'idusuario' => \Auth::user()->id,
-            'status' => 1
+            'status' => 0
         ));
         if($result){
             $id = Factura::all()->last()->id;
@@ -85,11 +85,11 @@ class CarroController extends Controller
                     'cantidad' => $item['cantidad']
                 ));
                 \Session::put('carro',array());
-                $result ? $result = 'Su pedido fue enviado con éxito a la administración de la tienda.' : $result = 'Lo sentimos, ocurrio un error en el proceso de envio de su pedido. Le recomendamos colocarse en contacto con la administración.';
+                $result ? $msj = array('msj' => 'Su pedido fue enviado con éxito a la administración de la tienda.','error' => false, 'idfactura' => $id) : $msj = array('error' => true, 'msj' => 'Lo sentimos, ocurrio un error en el proceso de envio de su pedido. Le recomendamos colocarse en contacto con la administración.');
             }
         }else{
-            $result = 'Lo sentimos, ocurrió un error en el proceso de envío de su pedido. Le recomendamos colocarse en contacto con la administración. ';
+            $msj = array('error' => true, 'msj' => 'Lo sentimos, ocurrió un error en el proceso de envío de su pedido. Le recomendamos colocarse en contacto con la administración. ');
         }
-        return view('carro/compra',compact('result'));
+        return view('carro/compra',compact('msj'));
     }
 }
