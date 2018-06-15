@@ -12,7 +12,6 @@
             <tr><td><b class="text-primary"> Cliente </b> </td><td> {{$detalles->usuario_pk->nombre}}</td></tr>
             <tr><td><b class="text-primary"> Fecha de ingreso </b> </td><td> {{$detalles->fecha}}</td></tr>
             <tr><td><b class="text-primary"> Estado </b> </td><td> {{($detalles->status)? 'Despachada' : 'Sin despachar'}}</td></tr>
-            <tr><td><b class="text-primary"> Adjuntos </b> </td><td> {{($detalles->status)? 'Despachada' : 'Sin despachar'}}</td></tr>
         @endforeach
         <table>
         <br>
@@ -28,6 +27,7 @@
 				</thead>
 				<tbody>
                     @foreach($detalles->facturaprendas_pk as $fp)
+                    <tr>
                         <td>
                             @foreach($prendas as $prenda)
                                 @if($fp->idprenda == $prenda->id)
@@ -50,6 +50,7 @@
                             @endforeach
                         </td>
                         <td>{{$fp->cantidad}}</td>
+</tr>
                     @endforeach
 				</tbody>
 			</table>
