@@ -94,7 +94,12 @@
 			</dl>  <!-- item-property-hor .// -->
 			<dl class="param param-feature">
 				<dt>Colores</dt>
-				<dd>{{ 'aqui los colores' }}</dd>
+				<dd>
+					@if(count($tallas) > 0)
+					@else
+					<label>No existe inventario disponible</label>
+					@endif
+				</dd>
 			</dl>  <!-- item-property-hor .// -->
 
 			<hr>
@@ -103,12 +108,16 @@
 						<dl class="param param-inline">
 								<dt>Tallas</dt>
 								<dd>
-								@foreach($tallas as $talla)
-									<label class="form-check form-check-inline" title="Disponible: {{$talla['cantidad']}}">
-										<input class="form-check-input" {{($talla['cantidad'] == 0)?'disabled':''}} type="radio" name="talla" id="inlineRadio2" value="{{$talla['id']}}" data-maxcant="{{$talla['cantidad']}}">										<input type="hidden" name="idtalla" value="{{$talla['id']}}" />
-										<span class="form-check-label">{{$talla['medida']}}</span>
-									</label>
-								@endforeach
+								@if(count($tallas) > 0)
+									@foreach($tallas as $talla)
+										<label class="form-check form-check-inline" title="Disponible: {{$talla['cantidad']}}">
+											<input class="form-check-input" {{($talla['cantidad'] == 0)?'disabled':''}} type="radio" name="talla" id="inlineRadio2" value="{{$talla['id']}}" data-maxcant="{{$talla['cantidad']}}">										<input type="hidden" name="idtalla" value="{{$talla['id']}}" />
+											<span class="form-check-label">{{$talla['medida']}}</span>
+										</label>
+									@endforeach
+								@else
+								<label>No existe inventario disponibe</label>
+								@endif
 								</dd>
 						</dl>  <!-- item-property .// -->
 					</div> <!-- col.// -->
@@ -116,7 +125,11 @@
 						<dl class="param param-inline">
 							<dt>Cantidad</dt>
 							<dd>
+								@if(count($tallas) > 0)
 								<input name="cantidad" type="number" min="1" value="1" class="form-control form-control-sm">
+								 @else
+								 <input name="cantidad" type="number" min="0" value="0" class="form-control  form-control-sm" disabled>
+ 								@endif
 							</dd>
 						</dl>  <!-- item-property .// -->
 					</div> <!-- col.// -->
@@ -125,6 +138,7 @@
 				<input type="hidden" name="precio" value={{$item->precio}} />
 				<input type="hidden" name="nombre" value="{{$item->nombre}}" />
 				<hr>
+				@if(count($tallas) > 0)
 				 @guest
 				 <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Debe iniciar sesión antes de comprar">
 						<input disabled type="submit" class="btn btn-lg btn-disabled text-uppercase " value="Comprar Ahora"  />
@@ -136,6 +150,7 @@
 					<input type="submit" class="btn btn-lg btn-primary text-uppercase " value="Comprar Ahora"  />
 					<a href="#" class="btn btn-lg btn-outline-primary text-uppercase	"> <i class="fas fa-shopping-cart"></i> agregar al carrito </a>
 						@endguest
+					@endif
 		</article> <!-- card-body.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->
