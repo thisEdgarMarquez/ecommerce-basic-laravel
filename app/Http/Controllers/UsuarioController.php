@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Usuario;
+use App\Factura;
+use App\Pago;
 use Illuminate\Validation\Rule;
 class UsuarioController extends Controller
 {
@@ -82,7 +84,9 @@ class UsuarioController extends Controller
         return response()->json(['error' => false, 'msj' => $msj]);
     }
     public function miperfil(){
-        return view('perfil')->with('usuario',Usuario::findOrFail(Auth::id()));
+        $usuario = Usuario::findOrFail(Auth::id());
+        $facturas = Factura::where('idusuario',Auth::id())->with('pagos_pk')->paginate(10);
+        return view('perfil',compact('usuario','facturas'));
     }
     public function editarPerfil(Request $request){
         $usuario = Usuario::findOrFail(Auth::id());

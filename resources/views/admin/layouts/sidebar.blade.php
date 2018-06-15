@@ -15,7 +15,7 @@
                 <li><a href="{{route('verProveedores')}}"> <i class="fa fa-truck fa-lg"></i> Proveedores</a></li>
                 <li><a href="{{route('verPrendas')}}"> <i class="fa fa-box fa-lg"></i> Prendas</a></li>
                 <li style="background-color:green;"><a href="{{route('verEntradas')}}"> <i class="fa fa-share fa-lg"></i> Ingreso Catalogo</a></li>
-                <li><a href="{{route('verFacturas')}}"><i class="fa fa-shopping-cart  fa-lg"></i> Facturas</a></li>
+                <li><a href="{{route('verFacturas')}}"><i class="fa fa-shopping-cart  fa-lg"></i> Ventas</a></li>
                 <li><a href="{{route('verUsuarios')}}"> <i class="fa fa-user fa-lg"></i> Usuarios</a></li>
             </ul>            
         </div>

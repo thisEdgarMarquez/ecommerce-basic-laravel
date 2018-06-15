@@ -27,4 +27,7 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function facturas_pk(){
+        return $this->hasMany('App\Factura','idusuario','id');
+    }
 }
