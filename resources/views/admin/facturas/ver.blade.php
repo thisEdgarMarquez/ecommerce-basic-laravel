@@ -11,7 +11,8 @@
             <tr><td><b class="text-primary"> # </b> </td><td> {{$detalles->id}}</td></tr>
             <tr><td><b class="text-primary"> Cliente </b> </td><td> {{$detalles->usuario_pk->nombre}}</td></tr>
             <tr><td><b class="text-primary"> Fecha de ingreso </b> </td><td> {{$detalles->fecha}}</td></tr>
-            <tr><td><b class="text-primary"> Estado </b> </td><td> {{($detalles->status==1)? 'Activa' : 'Desactivada'}}</td></tr>
+            <tr><td><b class="text-primary"> Estado </b> </td><td> {{($detalles->status)? 'Despachada' : 'Sin despachar'}}</td></tr>
+            <tr><td><b class="text-primary"> Adjuntos </b> </td><td> {{($detalles->status)? 'Despachada' : 'Sin despachar'}}</td></tr>
         @endforeach
         <table>
         <br>

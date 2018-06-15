@@ -27,7 +27,7 @@
                         <td>{{ $factura->fecha }}</td>
                         <td>{{$factura->monto}} BsF</td>
 						<td>{{ $factura->usuario_pk['nombre'] }}</td>						
-						<td>@if($factura->status) Sin despachar @else Despachada @endif</td>
+						<td>@if($factura->status) Despachada @else Sin despachar @endif</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" aria-label="...">
 								<a href="{{route('editarEntrada',['id' => $factura->id])}}" class="btn btn-sm btn-info">

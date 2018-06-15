@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row m-y-2">
-        <div class="col-lg-8 push-lg-4">
+        <div class="col-lg-12 push-lg-12">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Perfil</a>
@@ -9,8 +9,85 @@
                 <li class="nav-item">
                     <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Editar</a>
                 </li>
+                <li class="nav-item">
+                    <a href="" data-target="#facturas" data-toggle="tab" class="nav-link">Facturas</a>
+                </li>
             </ul>
             <div class="tab-content p-b-3">
+                <div class="tab-pane @if (session('msj')) active @endif" id="facturas">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Fecha</th>
+                                            <th>Monto</th>						
+                                            <th>Estado</th>
+                                            <th>Pago</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $idpagos = array(); @endphp
+                                        @foreach($facturas as $factura)
+                                        @php $btnstatus = null; @endphp
+                                        <tr data-id="{{$factura->id}}">
+                                            <td>{{$factura->id}}</td>
+                                            <td>{{ $factura->fecha }}</td>
+                                            <td>{{$factura->monto}} BsF</td>
+                                            <td>@if($factura->status) Despachada @else Sin despachar @endif</td>
+                                            <td>
+                                            @foreach($factura->pagos_pk as $pago)
+                                                @if($pago->idfactura == $factura->id)
+                                                    @switch($pago->status)
+                                                        @case('0')
+                                                        En revisión
+                                                        @php $btnstatus = false; @endphp
+                                                        @break
+                                                        @case('1')
+                                                        Aprobado
+                                                        @php $btnstatus = false; @endphp
+                                                        @break
+                                                        @default
+                                                        @break
+                                                    @endswitch
+                                                    @php array_push($idpagos,$factura->id); @endphp
+                                                @endif
+                                            @endforeach
+                                            @if(!in_array($factura->id,$idpagos))
+                                            Sin pago
+                                            @php $btnstatus = true; @endphp
+                                            @endif
+                                            </td>
+                                            <td>
+                                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                                @if($btnstatus)
+                                                    <a href="{{route('pagarGET',$factura->id)}}" class="btn btn-sm btn-primary">
+                                                        Pagar <i class="fas fa-money-bill-alt "></i>
+                                                    </a>
+                                                @else
+                                                <a href="" class="btn btn-sm btn-primary disabled">
+                                                        Pagar <i class="fas fa-money-bill-alt "></i>
+                                                </a>
+                                                @endif
+                                                <a href="{{route('pdfFactura',$factura->id)}}" class="btn btn-sm btn-danger">
+                                                    Ver factura <i class="fas fa-file-pdf "></i>
+                                                </a>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="col-md-12">
+                                    {{$facturas->render()}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="tab-pane @if (!session('msj')) active @endif" id="profile">
                     <div class="row">
                         <div class="col-lg-12">

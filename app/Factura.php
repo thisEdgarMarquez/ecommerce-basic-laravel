@@ -13,4 +13,7 @@ class Factura extends Model
     public function facturaprendas_pk(){
         return $this->hasMany('App\FacturaPrenda','idfactura','id');
     }
+    public function pagos_pk(){
+        return $this->hasMany('App\Pago','idfactura','id');
+    }
 }
