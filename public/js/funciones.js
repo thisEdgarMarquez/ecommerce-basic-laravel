@@ -229,3 +229,78 @@ $('#form-detalles-prenda').on('submit', function(e){
         return false;
     }
 })
+function limpiarFormPago(){
+    $("#form-body").empty();
+}
+function agregarFormPago(){
+    var html = `<div class="form-group">
+    <label for="nombre_banco" class="control-label col-xs-4">Banco</label> 
+    <div class="col-xs-8">
+        <input required id="nombre_banco" name="nombre_banco" placeholder="Nombre del banco" required="required" class="form-control" type="text">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="numero_referencia" class="control-label col-xs-4"># Referencia</label> 
+    <div class="col-xs-8">
+        <input required id="numero_referencia" name="numero_referencia" class="form-control" type="number" min="0">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="monto" class="control-label col-xs-4">Monto</label> 
+    <div class="col-xs-8">
+        <input required id="monto" name="monto" class="form-control" required="required" type="number" min="0">
+    </div>
+    </div> 
+    <div class="form-group row">
+    <label class="col-4 col-form-label">Adjunto</label> 
+    <div class="col-8">
+        <input class="form-control" type="file" name="adjunto" accept="image/*">
+    </div>
+    </div>`;
+    $("#form-body").append(html);
+}
+$("#tipo_pago").change(function(){
+    switch (this.value) {
+        case '1':
+            $("#form-body").hide();
+            $("#alert-pago").show();
+            limpiarFormPago();
+            $("#container-button").show();
+            break;
+        case '2':
+            $("#alert-pago").hide();
+            agregarFormPago();
+            $("#form-body").show();
+            $("#container-button").show();
+            break;
+        case '3':
+            $("#form-body").hide();
+            $("#alert-pago").show();
+            limpiarFormPago();
+            $("#container-button").show();
+            break;
+        default:
+            break;
+    }
+});
+function inputPagoAdmin(val){
+    $("input[name=nombre_banco").attr('disabled',val);
+    $("input[name=numero_referencia").attr('disabled',val);
+    $("input[name=adjunto").attr('disabled',val);
+
+}
+$("#tipo_pago_admin").change(function(){
+    switch (this.value) {
+        case '1':
+            inputPagoAdmin(true);
+            break;
+        case '2':
+            inputPagoAdmin(false);
+            break;
+        case '3':
+            inputPagoAdmin(true);
+            break;
+        default:
+            break;
+    }
+});

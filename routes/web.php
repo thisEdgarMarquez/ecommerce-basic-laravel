@@ -81,6 +81,13 @@ Route::group(['middleware' => 'esAdmin'],function(){
     //Facturas
     Route::get('admin/facturas','FacturaController@index')->name('verFacturas');
     Route::get('admin/facturas/ver/{id}','FacturaController@detalles')->name('detallesFactura')->where('id','[0-9]+');
+    //Pagos
+    Route::get('admin/pagos','PagoController@index')->name('verPagos');
+    Route::get('admin/pagos/agregar','PagoController@agregar')->name('agregarPago');
+    Route::post('admin/pagos/crear','PagoController@crear')->name('crearPago');
+    Route::get('admin/pagos/editar/{id}','PagoController@editar')->name('editarPago')->where('id','[0-9]+');
+    Route::post('admin/pagos/actualizar','PagoController@actualizar')->name('actualizarPago');
+    Route::post('admin/pagos/eliminar','PagoController@eliminar')->name('eliminarPago');
 });
 
 //Home 
