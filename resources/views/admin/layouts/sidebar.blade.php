@@ -17,6 +17,7 @@
                 <li><a href="{{route('verFacturas')}}"><i class="fa fa-shopping-cart  fa-lg"></i> Ventas</a></li>
                 <li><a href="{{route('verPagos')}}"><i class="fa fa-money-bill-alt fa-lg"></i> Pagos</a></li>
                 <li><a href="{{route('verUsuarios')}}"> <i class="fa fa-user fa-lg"></i> Usuarios</a></li>
+                <li><a href="{{route('inicio')}}"> <i class="fa fa-sign-out-alt fa-lg"></i> Salir</a></li>
             </ul>            
         </div>
     </div>

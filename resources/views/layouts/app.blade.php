@@ -26,15 +26,6 @@
               <a class="nav-link" href="{{route('inicio')}}">Inicio
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nosotros</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Catálogo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contacto</a>
-            </li>
             @guest
             <!--Login y Registro -->
             <li class="nav-item">
@@ -44,6 +35,9 @@
                 <a class="nav-link" href="{{route('login')}}">Ingresar</a>
             </li>
             @else
+            @if(Auth::user()->nivel == 2)
+            <li class="nav-item"><a class="nav-link" ref="{{route('carro')}}" href="{{route('admin')}}">Admin</a></li>
+            @endif
             <li class="nav-item"><a class="nav-link" ref="{{route('carro')}}" href="{{route('carro')}}"><i class="fa fa-shopping-bag"></i> Carro</a></li>
             <li class="nav-item"><a class="nav-link" ref="{{route('miperfil')}}" href="{{route('miperfil')}}">Perfil</a></li>
             <li class="nav-item">
