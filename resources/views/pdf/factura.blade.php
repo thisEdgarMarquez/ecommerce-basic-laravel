@@ -52,8 +52,8 @@
                                     <th class="">Nombre</th>
                                     <th class="">Cantidad</th>
                                     <th class="">Talla</th>
-                                    <th class="">Color</th>
-                                    <th class="">Precio</th>
+<!--                                     <th class="">Color</th>
+ -->                                    <th class="">Precio</th>
                                     <th>Subtotal</th>
                                   </tr>
                                 </thead>
@@ -67,7 +67,6 @@
                                         <td class="">{{$prenda['nombre']}}</td>
                                         <td class="">{{$prenda['cantidad']}}</td>
                                         <td class="">{{$prenda['talla']}}</td>
-                                        <td class="">asd</td>
                                         <td class="">{{$prenda['precio']}} BsF</td>
                                         <td>{{$prenda['precio']*$prenda['cantidad']}} BsF</td>
                                         </tr>

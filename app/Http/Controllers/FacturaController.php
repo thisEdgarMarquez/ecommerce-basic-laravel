@@ -7,8 +7,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\Factura;
 use App\Prenda;
 use App\Talla;
-use App\Color;
-use App\Marca;
+/* use App\Color;
+ */use App\Marca;
 use App\Genero;
 use App\Usuario;
 class FacturaController extends Controller
@@ -22,8 +22,8 @@ class FacturaController extends Controller
         $factura = Factura::where('id',$request->segment(4))->with('usuario_pk', 'facturaprendas_pk')->get();
         $prendas = Prenda::all();
         $tallas = Talla::all();
-        $colores = Color::all();
-        return view('admin/facturas/ver',compact('factura','colores','tallas','prendas'));
+/*         $colores = Color::all();
+ */        return view('admin/facturas/ver',compact('factura','tallas','prendas'));
     }
     public function pdf(Request $request){
         $data = Factura::findOrFail($request->segment(3));

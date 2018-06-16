@@ -7,7 +7,6 @@ use App\Entrada;
 use App\Proveedor;
 use App\Prenda;
 use App\Talla;
-use App\Color;
 use App\EntradaPrenda;
 class EntradaController extends Controller
 {
@@ -19,8 +18,7 @@ class EntradaController extends Controller
         $proveedores = Proveedor::where('status',1)->get();
         $prendas = Prenda::where('status',1)->get()->toArray();
         $tallas = Talla::where('status',1)->get()->toArray();
-        $colores = Color::where('status',1)->get()->toArray();
-        return view('admin/entradas/agregar',compact('proveedores','prendas','tallas', 'colores'));
+        return view('admin/entradas/agregar',compact('proveedores','prendas','tallas'));
     }
     
     public function crear(Request $request){
@@ -29,7 +27,6 @@ class EntradaController extends Controller
             'fecha' => 'required|date',
             'idprenda' => 'required|array',
             'idtalla' => 'required|array',
-            'idcolor' => 'required|array',
             'cantidad' => 'required|array',
             'status' => 'required|boolean'
         ]);
@@ -41,7 +38,6 @@ class EntradaController extends Controller
                     'identrada' => $entrada->id,
                     'idprenda' => $request->get('idprenda')[$i],
                     'idtalla' => $request->get('idtalla')[$i],
-                    'idcolor' => $request->get('idcolor')[$i],
                     'cantidad' => $request->get('cantidad')[$i]
                 ]);
             }
@@ -53,21 +49,18 @@ class EntradaController extends Controller
         $entrada = Entrada::where('id',$request->segment(4))->with('proveedor_pk', 'entradaprenda_pk')->get();
         $prendas = Prenda::all();
         $tallas = Talla::all();
-        $colores = Color::all();
-        return view('admin/entradas/ver',compact('entrada','prendas','tallas', 'colores'));
+        return view('admin/entradas/ver',compact('entrada','prendas','tallas'));
     }
     public function editar(Request $request){
         $entrada = Entrada::where('id',$request->segment(4))->with('proveedor_pk', 'entradaprenda_pk')->get();
         $proveedores = Proveedor::where('status',1)->get();
         $prendas = Prenda::where('status',1)->get()->toArray();
         $tallas = Talla::where('status',1)->get()->toArray();
-        $colores = Color::where('status',1)->get()->toArray();
         $mapEntradaPrenda = array();
         foreach($entrada[0]->entradaprenda_pk as $entrada){
             
             $nomPrenda;
             $medTalla;
-            $nomColor;
             $identrada = $entrada->id;
 
             foreach($prendas as $prenda){
@@ -80,11 +73,11 @@ class EntradaController extends Controller
                     $medTalla = $talla['medida'];
                 }
             }
-            foreach($colores as $color){
+            /* foreach($colores as $color){
                 if($color['id'] == $entrada->idcolor) {
                     $nomColor = $color['nombre'];
                 }
-            }
+            } */
 
             array_push($mapEntradaPrenda, [
                 'identrada_prenda' => $entrada->id,
@@ -96,16 +89,16 @@ class EntradaController extends Controller
                     'idtalla'=> $entrada->idtalla,
                     'medida'=> $medTalla
                 ],
-                '_color'=> [
+               /*  '_color'=> [
                     'idcolor'=> $entrada->idcolor,
                     'nombre'=> $nomColor
-                ],
+                ], */
                 'cantidad'=> $entrada->cantidad
             ]);
         }
 
         $entrada = Entrada::where('id',$request->segment(4))->with('proveedor_pk', 'entradaprenda_pk')->get();
-        return view('admin/entradas/editar',compact('entrada','proveedores','prendas','tallas', 'colores', 'mapEntradaPrenda'));
+        return view('admin/entradas/editar',compact('entrada','proveedores','prendas','tallas', 'mapEntradaPrenda'));
     }
     public function actualizar(Request $request){
         $entrada = Entrada::findOrFail($request->get('id'));
@@ -130,7 +123,6 @@ class EntradaController extends Controller
                         'identrada' => $entrada->id,
                         'idprenda' => $request->get('idprenda')[$i],
                         'idtalla' => $request->get('idtalla')[$i],
-                        'idcolor' => $request->get('idcolor')[$i],
                         'cantidad' => $request->get('cantidad')[$i]
                     ]);
                 }

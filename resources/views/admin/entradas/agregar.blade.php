@@ -40,8 +40,7 @@
                                         <tr>
                                             <th>Prenda</th>
                                             <th>Talla</th>
-                                            <th>Color</th>
-                                            <th>Cantidad</th>
+                                             <th>Cantidad</th>
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
@@ -61,13 +60,7 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td>                                                
-                                                <select name="idcolor" class="custom-select input-lg" id="idcolor">
-                                                    @foreach($colores as $color)
-                                                        <option value="{{$color['id']}}">{{$color['nombre']}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
+                                           
                                             <td class="col-md-3"><input type="number" name="cantidad" class="form-control" min="1" id="cantidad"></td>
                                             
                                             <td>

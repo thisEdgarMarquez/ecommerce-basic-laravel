@@ -21,8 +21,8 @@
 					<tr>
                         <th>Prenda</th>
                         <th>Talla</th>
-                        <th>Color</th>
-                        <th>Cantidad</th>                        
+<!--                         <th>Color</th>
+ -->                        <th>Cantidad</th>                        
 					</tr>
 				</thead>
 				<tbody>
@@ -42,13 +42,13 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>
+                       <!--  <td>
                             @foreach($colores as $color)
                                 @if($color->id == $fp->idcolor)
                                 <span class="muestra-color" style="{{'background-color: #'.$color->hex }}"></span>
                                 @endif
                             @endforeach
-                        </td>
+                        </td> -->
                         <td>{{$fp->cantidad}}</td>
 </tr>
                     @endforeach

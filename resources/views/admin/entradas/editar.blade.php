@@ -39,8 +39,7 @@
                                         <tr>
                                             <th>Prenda</th>
                                             <th>Talla</th>
-                                            <th>Color</th>
-                                            <th>Cantidad</th>
+                                           <th>Cantidad</th>
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
@@ -60,13 +59,7 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td>                                                
-                                                <select name="select_color" class="custom-select input-lg" id="idcolor">
-                                                    @foreach($colores as $color)
-                                                        <option value="{{$color['id']}}">{{$color['nombre']}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
+                                           
                                             <td class="col-md-3">
                                                 <input type="number" name="input_cantidad" class="form-control" min="1" id="cantidad">
                                             </td>                                                
@@ -80,7 +73,6 @@
                                         <tr class="tr-editar-entrada">
                                             <td>{{$entrada['_prenda']['nombre']}}</td>
                                             <td>{{$entrada['_talla']['medida']}}</td>
-                                            <td>{{$entrada['_color']['nombre']}}</td>
                                             <td>{{$entrada['cantidad']}}</td>
                                             <td class="text-center">
                                                 <button onClick="return eliminarPrendaEntrada({{$entrada['identrada_prenda']}});" type="button" class="btn btn-danger btn-rm-entrada"><i class="fas fa-trash"></i></button>

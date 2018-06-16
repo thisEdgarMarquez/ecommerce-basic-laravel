@@ -42,12 +42,12 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::post('admin/tallas/actualizar','TallaController@actualizar')->name('actualizarTalla');
     Route::post('admin/tallas/eliminar','TallaController@eliminar')->name('eliminarTalla');
     //Colores
-    Route::get('admin/colores','ColorController@index')->name('verColores');
+   /*  Route::get('admin/colores','ColorController@index')->name('verColores');
     Route::get('admin/colores/agregar','ColorController@agregar')->name('agregarColor');
     Route::get('admin/colores/editar/{id}','ColorController@editar')->name('editarColor')->where('id','[0-9]+');
     Route::post('admin/colores/crear','ColorController@crear')->name('crearColor');
     Route::post('admin/colores/actualizar','ColorController@actualizar')->name('actualizarColor');
-    Route::post('admin/colores/eliminar','ColorController@eliminar')->name('eliminarColor');
+    Route::post('admin/colores/eliminar','ColorController@eliminar')->name('eliminarColor'); */
     //Prendas
     Route::get('admin/prendas','PrendaController@index')->name('verPrendas');
     Route::get('admin/prendas/agregar','PrendaController@agregar')->name('agregarPrenda');

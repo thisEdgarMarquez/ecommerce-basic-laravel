@@ -80,7 +80,6 @@ class CarroController extends Controller
                 $result = FacturaPrenda::create(array(
                     'idfactura' => $id,
                     'idprenda' => $item['id'],
-                    'idcolor' => 1,
                     'idtalla' => $item['id_talla'], 
                     'cantidad' => $item['cantidad']
                 ));

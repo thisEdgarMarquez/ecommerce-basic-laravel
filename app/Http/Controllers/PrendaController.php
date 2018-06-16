@@ -11,8 +11,6 @@ use App\Categoria;
 use App\Genero;
 use App\Marca;
 use App\Talla;
-use App\Color;
-use App\ColorPrenda;
 use App\EntradaPrenda;
 
 class PrendaController extends Controller
@@ -25,7 +23,7 @@ class PrendaController extends Controller
         $categorias = Categoria::where('status',1)->orderBy('nombre','asc')->get();
         $generos = Genero::where('status',1)->get();
         $marcas = Marca::where('status',1)->orderBy('nombre','asc')->get();
-        return view('admin/prendas/agregar',compact('categorias','generos','marcas','tallas','colores'));
+        return view('admin/prendas/agregar',compact('categorias','generos','marcas','tallas'));
     }
     public function crear(Request $request){
         $this->validate($request,[

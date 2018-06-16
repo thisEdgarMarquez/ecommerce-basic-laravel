@@ -92,7 +92,7 @@
 				<dt>Género</dt>
 				<dd>{{ $item->genero_pk['nombre'] }}</dd>
 			</dl>  <!-- item-property-hor .// -->
-			<dl class="param param-feature">
+			<!-- <dl class="param param-feature">
 				<dt>Colores</dt>
 				<dd>
 					@if(count($tallas) > 0)
