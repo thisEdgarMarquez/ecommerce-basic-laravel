@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Factura;
 use App\Prenda;
+use App\FacturaPrenda;
 use App\Talla;
+use App\EntradaPrenda;
 /* use App\Color;
  */use App\Marca;
 use App\Genero;
@@ -24,6 +26,36 @@ class FacturaController extends Controller
         $tallas = Talla::all();
 /*         $colores = Color::all();
  */        return view('admin/facturas/ver',compact('factura','tallas','prendas'));
+    }
+    public function despachar(Request $request){
+        $factura = Factura::findOrFail($request->get('id'));
+        $facturaPrendas = FacturaPrenda::where('idfactura',$request->get('id'))->get();
+        $resultado=null;
+        $msj = null;
+        foreach($facturaPrendas as $prendas){
+            $stock = EntradaPrenda::where([
+                ['idprenda','=',$prendas->idprenda],
+                ['idtalla','=',$prendas->idtalla],
+                ['cantidad','>=',$prendas->cantidad]
+            ])->get()->last();
+            if($stock){
+                $result = $stock->cantidad - $prendas->cantidad;
+                $result < 0 ? $result = 0 : $stock->cantidad = $result;
+                if($stock->save()){
+                    $resultado = true;
+                }else{
+                    $resultado = false;
+                }
+            }else{
+                $msj = array('error' => true, 'Lo sentimos no encontramos un stock con suficiente cantidad');
+            }
+        }
+        if($resultado){
+            $factura->status = 1;
+            $factura->save();
+        }
+        $resultado ? $msj = 'La factura fue despachada con exito.' : 'Lo sentimos, ocurrio un error en el proceso de aprobación de la factura.';
+        return response()->json(['error' => false, 'msj' => $msj]);
     }
     public function pdf(Request $request){
         $data = Factura::findOrFail($request->segment(3));

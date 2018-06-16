@@ -81,6 +81,7 @@ Route::group(['middleware' => 'esAdmin'],function(){
     //Facturas
     Route::get('admin/facturas','FacturaController@index')->name('verFacturas');
     Route::get('admin/facturas/ver/{id}','FacturaController@detalles')->name('detallesFactura')->where('id','[0-9]+');
+    Route::post('admin/facturas/aprobar','FacturaController@despachar')->name('despacharFactura');
     //Pagos
     Route::get('admin/pagos','PagoController@index')->name('verPagos');
     Route::get('admin/pagos/agregar','PagoController@agregar')->name('agregarPago');

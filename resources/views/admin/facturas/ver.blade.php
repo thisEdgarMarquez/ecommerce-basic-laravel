@@ -12,6 +12,7 @@
             <tr><td><b class="text-primary"> Cliente </b> </td><td> {{$detalles->usuario_pk->nombre}}</td></tr>
             <tr><td><b class="text-primary"> Fecha de ingreso </b> </td><td> {{$detalles->fecha}}</td></tr>
             <tr><td><b class="text-primary"> Estado </b> </td><td> {{($detalles->status)? 'Despachada' : 'Sin despachar'}}</td></tr>
+            <tr><td><b class="text-primary"> PDF </b> </td><td><a href="{{route('pdfFactura',$detalles->id)}}" class="btn btn-danger">Generar</a></td></tr>
         @endforeach
         <table>
         <br>
@@ -21,8 +22,7 @@
 					<tr>
                         <th>Prenda</th>
                         <th>Talla</th>
-<!--                         <th>Color</th>
- -->                        <th>Cantidad</th>                        
+                <th>Cantidad</th>                        
 					</tr>
 				</thead>
 				<tbody>
@@ -42,19 +42,12 @@
                                 @endif
                             @endforeach
                         </td>
-                       <!--  <td>
-                            @foreach($colores as $color)
-                                @if($color->id == $fp->idcolor)
-                                <span class="muestra-color" style="{{'background-color: #'.$color->hex }}"></span>
-                                @endif
-                            @endforeach
-                        </td> -->
                         <td>{{$fp->cantidad}}</td>
 </tr>
                     @endforeach
 				</tbody>
 			</table>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 @endsection

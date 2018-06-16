@@ -82,7 +82,6 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
                                         <td>Total:{{$total}} BsF</td>
                                     </tr>
                                 </tfoot>

@@ -1,10 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="jumbotron text-center">
-	<h1 class="text-uppercase">ENTRADAS</h1>
-	<a href="{{route('agregarEntrada')}}">
-		<button class="btn btn-success btn-lg"> <i class="fa fa-plus"></i> Agregar</button>
-	</a>
+	<h1 class="text-uppercase">VENTAS</h1>
 </div>
 <div class="row">
 	<div class="col-md-12">
@@ -30,6 +27,9 @@
 						<td>@if($factura->status) Despachada @else Sin despachar @endif</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" aria-label="...">
+								<a href="#" onClick="return confirmacion('¿Estás seguro de despachar la factura?','{{route('despacharFactura')}}',{{$factura->id}},false);"  class="{{$factura->status ? 'disabled' : ''}} btn btn-sm btn-success">
+									Despachar
+								</a>
 								<a href="{{route('editarEntrada',['id' => $factura->id])}}" class="btn btn-sm btn-info">
 									Editar <i class="fas fa-pencil-alt"></i>
 								</a>
