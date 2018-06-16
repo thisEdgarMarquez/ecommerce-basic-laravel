@@ -43,11 +43,15 @@
                                                 @if($pago->idfactura == $factura->id)
                                                     @switch($pago->status)
                                                         @case('0')
-                                                        En revisión
+                                                        En espera
                                                         @php $btnstatus = false; @endphp
                                                         @break
                                                         @case('1')
                                                         Aprobado
+                                                        @php $btnstatus = false; @endphp
+                                                        @break
+                                                        @case('2')
+                                                        Rechazado
                                                         @php $btnstatus = false; @endphp
                                                         @break
                                                         @default

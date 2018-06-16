@@ -1,4 +1,4 @@
-function confirmacion(msj,url,iditem){
+function confirmacion(msj,url,iditem,eliminar=true){
     var respuesta = confirm(msj);
     if(respuesta){
         $.ajax({
@@ -9,7 +9,9 @@ function confirmacion(msj,url,iditem){
             url: url,
             data: {id: iditem},
         }).done(function(response){
-            $(`[data-id=${iditem}]`).remove();
+            if(eliminar == true){
+                $(`[data-id=${iditem}]`).remove();
+            }
             $('#ajaxRespuesta').empty();
             $('#ajaxRespuesta').append(`<div class="alert alert-info text-center">${response.msj}</div>`);
         }).fail(function(err){

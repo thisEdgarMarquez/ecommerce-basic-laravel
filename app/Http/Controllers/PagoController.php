@@ -9,7 +9,7 @@ use App\Usuario;
 class PagoController extends Controller
 {
     public function index(){
-        $pagos = Pago::with('usuario_pk')->paginate();
+        $pagos = Pago::with('usuario_pk')->orderBy('id','desc')->paginate(10);
         return view('admin/pagos/index',compact('pagos'));
     }
     public function editar(Request $request){
@@ -42,6 +42,18 @@ class PagoController extends Controller
         $msj = null;
         $result ? $msj='El pago fue actualizado con exito.' : $msj = 'Lo sentimos, ocurrio un error en el proceso de actualización del pago.';
         return redirect()->back()->with('msj',$msj);
+    }
+    public function rechazar(Request $request){
+        $pago = Pago::findOrFail($request->get('id'));
+        $pago->status = 2;
+        $msj = $pago->save() ? $msj='El pago fue rechazado con exito.' : $msj='Lo sentimos, ocurrio un error en el proceso de aprobación del pago.';
+        return response()->json(['error' => false, 'msj' => $msj]);
+    }
+    public function aprobar(Request $request){
+        $pago = Pago::findOrFail($request->get('id'));
+        $pago->status = 1;
+        $msj = $pago->save() ? $msj='El pago fue aprobado con exito.' : $msj='Lo sentimos, ocurrio un error en el proceso de aprobación del pago.';
+        return response()->json(['error' => false, 'msj' => $msj]);
     }
     public function eliminar(Request $request){
         Pago::findOrFail($request->get('id'));

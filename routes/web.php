@@ -88,6 +88,8 @@ Route::group(['middleware' => 'esAdmin'],function(){
     Route::get('admin/pagos/editar/{id}','PagoController@editar')->name('editarPago')->where('id','[0-9]+');
     Route::post('admin/pagos/actualizar','PagoController@actualizar')->name('actualizarPago');
     Route::post('admin/pagos/eliminar','PagoController@eliminar')->name('eliminarPago');
+    Route::post('admin/pagos/aprobar','PagoController@aprobar')->name('aprobarPago');
+    Route::post('admin/pagos/rechazar','PagoController@rechazar')->name('rechazarPago');
 });
 
 //Home 

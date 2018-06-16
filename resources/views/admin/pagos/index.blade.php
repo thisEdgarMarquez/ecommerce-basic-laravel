@@ -58,11 +58,28 @@
                             No posee
                             @endif
                         </td>
-                        <td>{{$pago->status ? 'Aprobado':'Sin aprobar'}}</td>
+                        <td>
+                            @switch($pago->status)
+                                @case('0')
+                                En espera
+                                @break;
+                                @case('1')
+                                Aprobado
+                                @break;
+                                @case('2')
+                                Rechazado
+                                @break;
+                            @endswitch
                         </td>
                         <td>{{$pago->created_at}}</td>
                         <td>
 							<div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <a href="#" onClick="return confirmacion('¿Estás seguro de aprobar este pago?','{{route('aprobarPago')}}',{{$pago->id}},false);"  class="{{$pago->status == 1 ? 'disabled' : ''}} btn btn-sm btn-success">
+                                        Aprobar <i class="fas fa-checked "></i>
+                                    </a>
+                                    <a href="#" onClick="return confirmacion('¿Estás seguro de rechazar este pago?','{{route('rechazarPago')}}',{{$pago->id}},false);"  class="{{$pago->status == 2 ? 'disabled' : ''}} btn btn-sm btn-warning">
+                                        Rechazar <i class="fas fa-checked "></i>
+                                    </a>
 								<a href="{{route('editarPago',['id' => $pago->id])}}" class="btn btn-sm btn-info">
 									Editar <i class="fas fa-pencil-alt"></i>
 								</a>
