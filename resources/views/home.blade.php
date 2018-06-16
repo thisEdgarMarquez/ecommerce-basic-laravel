@@ -10,7 +10,7 @@
           <h1 class="my-4">Categorías</h1>
           <div class="list-group">
           @foreach($categorias as $categoria)
-            <a href="#" class="list-group-item">{{$categoria->nombre}}</a>
+            <a href="{{route('verCategoria',$categoria->id)}}" class="list-group-item">{{$categoria->nombre}}</a>
           @endforeach
           </div>
 
@@ -51,7 +51,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="{{route('detallesPrenda',['id' => $prenda->id])}}" >
-                  <img class="card-img-top" src="{{asset('uploads/'.(($prenda['img1'] != NULL)?$prenda['img1']:'default.png'))}}" alt="">
+                  <img style="min-height: 253px;max-height: 253px;" class="card-img-top" src="{{asset('uploads/'.(($prenda['img1'] != NULL)?$prenda['img1']:'default.png'))}}" alt="">
                 </a>
                 <div class="card-body">
                   <h4 class="card-title">

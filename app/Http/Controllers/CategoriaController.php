@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Categoria;
+use App\Prenda;
 
 class CategoriaController extends Controller
 {
@@ -45,4 +46,11 @@ class CategoriaController extends Controller
     public function editar(Request $request){
         return view('admin/categorias/editar')->with('categoria',Categoria::findOrFail($request->segment(4)));
     }
+    public function ver(Request $request){
+        Categoria::findOrFail($request->segment(2));
+        $categoria = Categoria::where('id',$request->segment(2))->get()->toArray();
+        $prendas = Prenda::where('idcategoria',$request->segment(2))->paginate(6);
+        return view('categoria',compact('categoria','prendas'));
+    }
+
 }

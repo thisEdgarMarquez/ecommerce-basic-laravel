@@ -110,5 +110,6 @@ Route::group(['middleware' => 'auth'],function(){
 Route::get('/','InicioController@index')->name('inicio');
 //Detalles Prenda
 Route::get('detalles-prenda/{id}','PrendaController@detalles')->name('detallesPrenda')->where('id','[0-9]+');
-
+//Categoria
+Route::get('categoria/{id}','CategoriaController@ver')->name('verCategoria')->where('id','[0-9]+');
 Auth::routes();
