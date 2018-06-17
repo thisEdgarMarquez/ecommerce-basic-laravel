@@ -32,7 +32,7 @@
             <td>{{$prenda->categoria_pk['nombre']}}</td>
             <td>{{$prenda->genero_pk['nombre']}}</td>
             <td>{{$prenda->descripcion}}</td>
-            <td>{{$prenda->cantidad >= 1 ? $prenda->cantidad : '0'}}</td>
+            <td>{{$cantidad[$prenda->id]}}
             <td>{{($prenda->status)? 'Activa': 'Desactivada'}}</td>
             <td>
 							<div class="btn-group btn-group-xs" role="group" aria-label="...">

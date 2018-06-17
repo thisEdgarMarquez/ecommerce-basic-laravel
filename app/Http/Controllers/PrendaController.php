@@ -17,7 +17,14 @@ class PrendaController extends Controller
 {
     public function index(){
         $prendas = Prenda::with('marca_pk','categoria_pk','genero_pk')->paginate(10);
-        return view('admin/prendas/index',compact('prendas'));
+        $cantidad;
+        foreach($prendas as $prenda){
+           $cantidad_data=DB::select("SELECT SUM(cantidad) AS cantidad FROM entradas_prendas WHERE idprenda = ".$prenda->id."");
+            foreach($cantidad_data as $data){
+                $cantidad[$prenda->id] = $data->cantidad;
+            }
+        }
+        return view('admin/prendas/index',compact('prendas','cantidad'));
     }
     public function agregar(){
         $categorias = Categoria::where('status',1)->orderBy('nombre','asc')->get();
